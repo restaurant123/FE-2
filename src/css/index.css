@@ -143,3 +143,33 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2rem;
+}
+.login {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+}
+.login .signup {
+  width: 65%;
+  border: 1px solid green;
+}
+.login .signup h2 {
+  margin-bottom: 15px;
+}
+.login .signup form button {
+  margin-bottom: 10px;
+}
+.login .signin {
+  width: 35%;
+  border: 1px solid green;
+}
+.login .signin h2 {
+  margin-bottom: 15px;
+}
