@@ -1,6 +1,8 @@
 import React from 'react';
 import {Route, Link} from 'react-router-dom';
+import PrivateRoute from './utils/PrivateRoute'
 import Login from './components/Login'
+import Restaurants from './components/Restaurants';
 
 function App() {
   return (
@@ -11,7 +13,9 @@ function App() {
 
       <Link to='/login'>Login</Link>
 
-      <Route exact path='/login' component={Login}/>
+      <PrivateRoute exact path='/Restaurants' component={Restaurants} />
+      <Route path='/login' component={Login}/>
+
       
     </div>
   );

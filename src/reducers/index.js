@@ -1,13 +1,8 @@
-const initialState = {
-    restaurants: []
-}
+import {combineReducers} from 'redux'
+import loginReducer from './loginReducer'
 
-const reducer = (state=initialState, action) => {
-    switch(action.type) {
-        default:
-            return state;
+export default combineReducers({
+        login: loginReducer
     }
-}
-
-export default reducer;
+)
 

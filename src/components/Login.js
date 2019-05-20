@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Form, Input, Label, Container, FormGroup, Col } from 'reactstrap';
+import {loginAction} from '../actions'
+import { connect } from 'react-redux';
 
 class Login extends React.Component {
 
@@ -31,6 +33,7 @@ class Login extends React.Component {
 
   handleSignInSubmit = (event) => {
     event.preventDefault();
+    this.props.loginAction(this.state.signIn)
   }
 
   render() {
@@ -95,4 +98,5 @@ class Login extends React.Component {
 
 }
 
-export default Login
+
+export default connect(null, {loginAction})(Login)
