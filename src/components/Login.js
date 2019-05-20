@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Form, Input, Label, Container, FormGroup, Col } from 'reactstrap';
-import {loginAction} from '../actions'
+import {loginAction} from '../actions/loginAction'
+import {registeringAction} from '../actions/registeringAction'
 import { connect } from 'react-redux';
 
 class Login extends React.Component {
@@ -10,7 +11,10 @@ class Login extends React.Component {
       name: '',
       email: '',
       password: '',
-      confirmPass: ''
+      address: '',
+      city: '',
+      state: '',
+      zipcode: ''
     },
     signIn: {
       email: '',
@@ -24,6 +28,7 @@ class Login extends React.Component {
 
   handleSignUpSubmit = (event) => {
     event.preventDefault();
+    this.props.registeringAction(this.state.signUp);
 
   }
 
@@ -33,6 +38,7 @@ class Login extends React.Component {
 
   handleSignInSubmit = (event) => {
     event.preventDefault();
+    console.log(this.loginAction);
     this.props.loginAction(this.state.signIn)
   }
 
@@ -64,8 +70,26 @@ class Login extends React.Component {
             </FormGroup>
             <FormGroup>
               <Col>
-                <Label>confirm Password</Label>
-                <Input type="password" name="confirnPass" value={this.state.signUp.confirmPass} onChange={this.handleSignUpChanges} />
+                <Label>Address</Label>
+                <Input type="text" name="address" value={this.state.signUp.address} onChange={this.handleSignUpChanges} />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col>
+                <Label>city</Label>
+                <Input type="text" name="city" value={this.state.signUp.city} onChange={this.handleSignUpChanges} />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col>
+                <Label>state</Label>
+                <Input type="text" name="state" value={this.state.signUp.state} onChange={this.handleSignUpChanges} />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col>
+                <Label>zipcode</Label>
+                <Input type="number" name="zipcode" value={this.state.signUp.zipcode} onChange={this.handleSignUpChanges} />
               </Col>
             </FormGroup>
 
@@ -99,4 +123,4 @@ class Login extends React.Component {
 }
 
 
-export default connect(null, {loginAction})(Login)
+export default connect(null, {loginAction, registeringAction})(Login)
