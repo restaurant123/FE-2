@@ -3,6 +3,8 @@ import {Route, Link} from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute'
 import Login from './components/Login'
 import Restaurants from './components/Restaurants';
+import Restaurant from './components/Restaurant';
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
       <Link to='/login'>Login</Link>
 
       <PrivateRoute exact path='/restaurants' component={Restaurants} />
+      <PrivateRoute exact path='/restaurants/:id' component={Restaurant} />
       <Route path='/login' component={Login}/>
 
       

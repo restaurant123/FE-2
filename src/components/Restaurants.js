@@ -1,11 +1,19 @@
 import React from 'react'
 import {getRestaurantsAction} from '../actions/restaurantsAction';
+
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+
 
 class Restaurants extends React.Component {
 
     componentDidMount() {
         this.props.getRestaurantsAction();
+    }
+
+    handleClickImage = (id) => {
+        this.props.history.push(`/restaurants/${id}`)
     }
 
 
@@ -14,7 +22,10 @@ class Restaurants extends React.Component {
         return (
             <div className='restaurants' >
                 {this.props.restaurants.map( restaurant => 
-                    <img src={restaurant.image_url} alt="restaurant" key={restaurant.id}/>)}
+                    <div className="restaurant" key={restaurant.id} onClick={()=>this.handleClickImage(restaurant.id)} >
+                        <img src={restaurant.image_url} alt="restaurant" /> 
+                    </div>
+                )}
                 
             </div>
         )
@@ -29,4 +40,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default connect(mapStateToProps, {getRestaurantsAction})(Restaurants);
+export default withRouter(connect(mapStateToProps, {getRestaurantsAction})(Restaurants));
