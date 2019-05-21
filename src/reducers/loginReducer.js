@@ -2,7 +2,7 @@ import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions/loginActio
 
 const initialState = {
     loginIn: false,
-    loginError: null
+    loginError: null,
 }
 
 const loginReducer = (state=initialState, action) => {
@@ -16,12 +16,14 @@ const loginReducer = (state=initialState, action) => {
 
         case LOGIN_SUCCESS:
             return {
+                ...state,
                 loginIn: false,
-                loginError: null
+                loginError: null,
             }
 
         case LOGIN_FAILURE:
             return {
+                ...state,
                 loginIn: false,
                 loginError: action.payload
             }

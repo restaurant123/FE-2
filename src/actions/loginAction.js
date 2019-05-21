@@ -12,8 +12,8 @@ export const loginAction = (credentials) => dispatch => {
         .post('https://restaurant-passport2019.herokuapp.com/users/login', credentials)
         .then(res => {
             localStorage.setItem('token', res.data.token)
-            console.log(res);
-            dispatch({type: LOGIN_SUCCESS})}
+            console.log(res.data.id);
+            dispatch({type: LOGIN_SUCCESS, payload: res.data.id})}
         )
         .catch(err => {
             dispatch({type: LOGIN_FAILURE, payload: err})

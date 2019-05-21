@@ -19,7 +19,7 @@ class Login extends React.Component {
     signIn: {
       email: '',
       password: ''
-    }
+    },
   }
 
   handleSignUpChanges = (event) => {
@@ -28,7 +28,8 @@ class Login extends React.Component {
 
   handleSignUpSubmit = (event) => {
     event.preventDefault();
-    this.props.registeringAction(this.state.signUp);
+    this.props.registeringAction(this.state.signUp)
+      .then()
 
   }
 
@@ -38,8 +39,8 @@ class Login extends React.Component {
 
   handleSignInSubmit = (event) => {
     event.preventDefault();
-    console.log(this.loginAction);
     this.props.loginAction(this.state.signIn)
+      .then(() => this.props.history.push('/restaurants'))
   }
 
   render() {
@@ -122,5 +123,8 @@ class Login extends React.Component {
 
 }
 
+const mapStateToProps = (state) => ({
+  id: state.login.loginId
+});
 
-export default connect(null, {loginAction, registeringAction})(Login)
+export default connect(mapStateToProps, {loginAction, registeringAction})(Login)

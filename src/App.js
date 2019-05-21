@@ -11,10 +11,10 @@ function App() {
         Test
       </header>
 
-      <Link to='/users/login'>Login</Link>
+      <Link to='/login'>Login</Link>
 
-      <PrivateRoute exact path='/Restaurants' component={Restaurants} />
-      <Route path='/users/login' component={Login}/>
+      <PrivateRoute exact path='/restaurants' component={Restaurants} />
+      <Route path='/login' component={Login}/>
 
       
     </div>
