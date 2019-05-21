@@ -11,8 +11,8 @@ export const loginAction = (credentials) => dispatch => {
     return axios
         .post('https://restaurant-passport2019.herokuapp.com/users/login', credentials)
         .then(res => {
-            console.log(res); 
-            localStorage.setItem('token', res.data.payload)
+            localStorage.setItem('token', res.data.token)
+            console.log(res);
             dispatch({type: LOGIN_SUCCESS})}
         )
         .catch(err => {

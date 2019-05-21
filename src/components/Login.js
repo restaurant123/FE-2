@@ -14,7 +14,7 @@ class Login extends React.Component {
       address: '',
       city: '',
       state: '',
-      zipcode: ''
+      zipCode: ''
     },
     signIn: {
       email: '',
@@ -89,7 +89,7 @@ class Login extends React.Component {
             <FormGroup>
               <Col>
                 <Label>zipcode</Label>
-                <Input type="number" name="zipcode" value={this.state.signUp.zipcode} onChange={this.handleSignUpChanges} />
+                <Input type="number" name="zipCode" value={this.state.signUp.zipCode} onChange={this.handleSignUpChanges} />
               </Col>
             </FormGroup>
 
