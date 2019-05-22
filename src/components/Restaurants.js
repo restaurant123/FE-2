@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {getRestaurantsAction} from '../actions/restaurantsAction';
+import {deleteAction} from '../actions/restaurantsAction';
+// import {localDeleteAction} from '../actions/localDeleteAction'
 
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
+import {Button} from 'reactstrap'
+
 
 
 
@@ -16,15 +21,24 @@ class Restaurants extends React.Component {
         this.props.history.push(`/restaurants/${id}`)
     }
 
+    handleClickDelete = (id) => {
+        this.props.deleteAction(id)
+    }
+
 
 
     render () {
         return (
             <div className='restaurants' >
                 {this.props.restaurants.map( restaurant => 
-                    <div className="restaurant" key={restaurant.id} onClick={()=>this.handleClickImage(restaurant.id)} >
+                <Fragment key={restaurant.id}>
+                    <div className="restaurant"  onClick={()=>this.handleClickImage(restaurant.id)} >
+                        <p>{restaurant.name}</p>
                         <img src={restaurant.image_url} alt="restaurant" /> 
+                        
                     </div>
+                    <Button color='danger' onClick={()=>this.handleClickDelete(restaurant.id)}>Delete</Button>
+                </Fragment>
                 )}
                 
             </div>
@@ -40,4 +54,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default withRouter(connect(mapStateToProps, {getRestaurantsAction})(Restaurants));
+export default withRouter(connect(mapStateToProps, {getRestaurantsAction, deleteAction})(Restaurants));

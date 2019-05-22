@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute'
 import Login from './components/Login'
 import Restaurants from './components/Restaurants';
