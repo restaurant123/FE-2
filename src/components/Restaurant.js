@@ -114,7 +114,7 @@ class Restaurant extends React.Component {
                                         <button onClick={this.handleClickMinus}>-</button>
                                     </Col>
                                 </Row>
-                                <Button className='back'><Link to='/restaurants'>Back</Link></Button>
+                                <Link to='/restaurants'><Button className='back'>Back</Button></Link>
                             </Col>
                         </Row>
                     </Container>
