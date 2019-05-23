@@ -12,7 +12,7 @@ export const registeringAction = (newUser) => dispatch =>  {
         .then(res => {
             console.log(res); 
             localStorage.setItem('token', res.data.payload)
-            dispatch({type: REGISTERING_SUCCESS})}
+            dispatch({type: REGISTERING_SUCCESS, payload: res})}
         )
         .catch(err => {
             dispatch({type: REGISTERING_FAILURE, payload: err})
