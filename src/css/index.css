@@ -259,11 +259,13 @@ h3 {
 }
 .single-restaurant .back {
   margin-top: 20px;
-  width: 60px;
+  width: 80px;
+  font-size: 1.2rem;
   background: #6200EE;
 }
 .single-restaurant .back a {
   color: white;
+  width: 100%;
 }
 .navbar {
   background: #6200EE;
