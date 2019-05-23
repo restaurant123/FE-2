@@ -24,3 +24,20 @@ export const deleteAction = (id) => dispatch => {
         .then(res => dispatch({type: DELETE_RESTAURANT_SUCCESS, payload: {res,id} }))
         .catch(err => dispatch({type: DELETE_RESTAURANT_FAILURE, payload: err}))
 }
+
+export const INCREMENT_VISITS = 'INCREMENT_VISITS';
+
+export const incrementVisits = (id) => dispatch =>  {
+    console.log ('incrementVisit actio started with id:', id);
+    return dispatch ({type:INCREMENT_VISITS, payload: id})
+}
+
+
+export const DECREMENT_VISITS = 'DECREMENT_VISITS';
+
+export const decrementVisits = (id) => dispatch =>  {
+    dispatch ({type:DECREMENT_VISITS, payload: id})
+}
+
+
+

@@ -29,12 +29,14 @@ class Login extends React.Component {
   handleSignUpSubmit = (event) => {
     event.preventDefault();
     this.props.registeringAction(this.state.signUp)
-      .then()
+      .then(() => this.props.history.push('/restaurants'))
 
   }
 
   handleSignInChanges = (event) => {
-    this.setState({ ...this.state, signIn: { ...this.state.signIn, [event.target.name]: event.target.value } })
+    this.setState({ ...this.state, 
+        signIn: { ...this.state.signIn, 
+        [event.target.name]: event.target.value } })
   }
 
   handleSignInSubmit = (event) => {
