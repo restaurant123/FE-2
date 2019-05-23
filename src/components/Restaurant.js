@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { incrementVisits, decrementVisits } from '../actions/restaurantsAction';
 import { getRestaurantAction } from '../actions/restaurantAction';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 
 
 
@@ -15,20 +15,22 @@ class Restaurant extends React.Component {
 
     componentDidMount() {
         let id = parseInt(this.props.match.params.id, 10);
-        //this.props.getRestaurantAction(id)
+        this.props.getRestaurantAction(id)
     }
 
-    handleClickMinus = (id) => {
+    handleClickMinus = (event) => {
+        event.preventDefault();
+
         if ((this.props.restaurants.find(restaurant =>
             restaurant.id === this.props.restaurant.id)).visited <= 0)
             return;
         else
-            this.props.decrementVisits(id);
+            this.props.decrementVisits(this.props.restaurant.id);
     }
 
-    handleClickPlus = (id) => {
-        console.log('id of the restaurant visited:', id)
-        this.props.incrementVisits(id);
+    handleClickPlus = (event) => {
+        event.preventDefault();
+        this.props.incrementVisits(this.props.restaurant.id);
     }
 
     render() {
@@ -67,35 +69,36 @@ class Restaurant extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col >
-                                        <p>
-                                            takeout: {this.props.restaurant.takeout}
+                                        <p className='details'>
+                                            <span>takeout:</span> {this.props.restaurant.takeout}
                                         </p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col >
-                                        <p>
-                                            delivery: {this.props.restaurant.delivery}
+                                        <p className='details'>
+                                            <span>delivery:</span> {this.props.restaurant.delivery}
+                                        </p>
+                                        <br />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col >
+                                        <p className='details'>
+                                            <span>opens at:</span> {this.props.restaurant.openHour} AM
                                         </p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col >
-                                        <p>
-                                            opens at: {this.props.restaurant.openHour} AM
+                                        <p className='details'>
+                                            <span>closes at:</span> {this.props.restaurant.closeHour} PM
                                         </p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col >
-                                        <p>
-                                            closes at: {this.props.restaurant.closeHour} PM
-                                        </p>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col >
-                                        <p>
+                                        <p className='details'>
                                             from Mon-Sat
                                         </p>
                                     </Col>
@@ -103,14 +106,15 @@ class Restaurant extends React.Component {
                                 <Row>
                                     <Col className='visit'>
                                         <span>visited:</span>
-                                        <div>
+                                        <div className='number'>
                                             {(this.props.restaurants.find(restaurant =>
                                                 restaurant.id === this.props.restaurant.id)).visited}
                                         </div>
-                                        <button onClick={() => this.handleClickPlus(this.props.restaurant.id)}>+</button>
-                                        <button onClick={() => this.handleClickMinus(this.props.restaurant.id)}>-</button>
+                                        <button onClick={this.handleClickPlus}>+</button>
+                                        <button onClick={this.handleClickMinus}>-</button>
                                     </Col>
                                 </Row>
+                                <Button className='back'><Link to='/restaurants'>Back</Link></Button>
                             </Col>
                         </Row>
                     </Container>
