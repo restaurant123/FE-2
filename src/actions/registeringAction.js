@@ -11,7 +11,7 @@ export const registeringAction = (newUser) => dispatch =>  {
         .post('https://restaurant-passport2019.herokuapp.com/users/register', newUser)
         .then(res => {
             console.log(res); 
-            localStorage.setItem('token', res.data.payload)
+            localStorage.setItem('token', res.data.token)
             dispatch({type: REGISTERING_SUCCESS, payload: res})}
         )
         .catch(err => {
