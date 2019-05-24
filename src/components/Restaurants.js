@@ -11,8 +11,9 @@ import {Button, Container, Row, Col} from 'reactstrap'
 
 class Restaurants extends React.Component {
 
+    
+
     componentDidMount() {
-        
     }
 
     handleClickImage = (id) => {
@@ -39,7 +40,7 @@ class Restaurants extends React.Component {
                         </Col>
                         <Col xs='6'>
                             <Row>
-                                <Col className='name'>
+                                <Col className='name' onClick={()=>this.handleClickImage(restaurant.id)}>
                                     <h2>{restaurant.name}</h2>
                                 </Col>
                                 <Col className='address'>
