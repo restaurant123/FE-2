@@ -251,6 +251,7 @@ h3 {
 }
 .single-restaurant .visit .number {
   font-weight: bold;
+  font-size: 1.3rem;
 }
 .single-restaurant .visit button {
   margin-left: 8px;
@@ -268,11 +269,20 @@ h3 {
   width: 100%;
 }
 .navbar {
+  margin-top: 10px;
   background: #6200EE;
+}
+.navbar img {
+  margin-right: 15px;
 }
 .navbar h1 {
   color: white;
+  font-size: 3rem;
 }
 .navbar .link {
   color: white;
+}
+.navbar span {
+  color: white;
+  font-size: 2rem;
 }
