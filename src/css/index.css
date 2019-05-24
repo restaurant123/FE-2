@@ -290,3 +290,17 @@ h3 {
   color: white;
   font-size: 2rem;
 }
+.navbar .item {
+  color: black;
+}
+.navbar .dropdown-menu-right {
+  width: 100px;
+}
+.navbar .form-control {
+  width: 39px;
+  font-size: 0.9rem;
+  padding: 2px;
+}
+.navbar .hidden {
+  display: none;
+}

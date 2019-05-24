@@ -12,7 +12,11 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Media } from 'reactstrap';
+  Media,
+  InputGroup,
+  InputGroupAddon,
+  Input,
+  InputGroupText } from 'reactstrap';
 
 export default class Example extends React.Component {
 
@@ -25,6 +29,13 @@ export default class Example extends React.Component {
       isOpen: false
     };
   }
+
+  componentDidMount() {
+    if (localStorage.getItem('token'))
+      document.querySelector(".login").classList.add("hidden")
+  }
+
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -45,24 +56,40 @@ export default class Example extends React.Component {
                 <NavLink className='link' tag={Link} to='../restaurants'><span>Restaurants</span></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className='link' tag={Link} to='/login'><span>Login</span></NavLink>
+                <NavLink className='link login' tag={Link} to='/login'><span>Login</span></NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                {/* <DropdownToggle nav caret>
-                  Options
+                
+              <DropdownToggle nav caret>
+                  <span>Filter</span>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
+                      <InputGroup>
+                        <InputGroupAddon addonType="append">
+                          <InputGroupText>
+                            <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input placeholder="delivery" />
+                      </InputGroup>
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    <InputGroup>
+                        <InputGroupAddon addonType="append">
+                          <InputGroupText>
+                            <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input placeholder="takeout" />
+                      </InputGroup>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                    <span className='item'>Reset</span>
                   </DropdownItem>
-                </DropdownMenu> */}
+                </DropdownMenu>
+
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
