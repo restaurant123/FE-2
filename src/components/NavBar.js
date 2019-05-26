@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux'
 import {
   Collapse,
   Navbar,
@@ -18,7 +19,10 @@ import {
   Input,
   InputGroupText } from 'reactstrap';
 
-export default class Example extends React.Component {
+import {logout} from '../actions/loginAction';
+
+
+class NavBar extends React.Component {
 
 
   constructor(props) {
@@ -26,13 +30,32 @@ export default class Example extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
 
   componentDidMount() {
-    if (localStorage.getItem('token'))
-      document.querySelector(".login").classList.add("hidden")
+    this.navItemsVisibility();
+  }
+
+  componentDidUpdate() {
+    this.navItemsVisibility();
+  }
+
+  navItemsVisibility = () => {
+    if (this.props.loggedIn) {
+      document.querySelector(".login").classList.add("hidden");
+      document.querySelector(".logout").classList.remove("hidden");
+      document.querySelector(".filter").classList.remove("hidden");
+      document.querySelector(".dropdown-toggle").classList.remove("hidden");
+
+    }
+    else {
+      document.querySelector(".login").classList.remove("hidden");
+      document.querySelector(".logout").classList.add("hidden");
+      document.querySelector(".filter").classList.add("hidden");
+      document.querySelector(".dropdown-toggle").classList.add("hidden");
+    }
   }
 
 
@@ -40,6 +63,12 @@ export default class Example extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+  }
+
+  handleLogoutClick = (event) => {
+    console.log('logout has been clicked!')
+    event.preventDefault();
+    this.props.logout();
   }
 
 
@@ -58,10 +87,13 @@ export default class Example extends React.Component {
               <NavItem>
                 <NavLink className='link login' tag={Link} to='/login'><span>Login</span></NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink className='link logout' tag={Link} to='/login' onClick={this.handleLogoutClick}><span>Logout</span></NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 
               <DropdownToggle nav caret>
-                  <span>Filter</span>
+                  <span className='filter'>Filter</span>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
@@ -98,3 +130,9 @@ export default class Example extends React.Component {
     );
   }
 }
+
+const mapPropstoState = (state) => ({
+  loggedIn: state.login.loggedIn
+})
+
+export default connect(mapPropstoState, {logout})(NavBar)

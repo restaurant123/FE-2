@@ -22,7 +22,8 @@ export const deleteAction = (id) => dispatch => {
     return AxiosWithAuth()
         .delete(`https://restaurant-passport2019.herokuapp.com/restaurants/${id}`)
         .then(res => dispatch({type: DELETE_RESTAURANT_SUCCESS, payload: {res,id} }))
-        .catch(err => dispatch({type: DELETE_RESTAURANT_FAILURE, payload: err}))
+        .catch(err => {window.alert('PLease login first...');
+            dispatch({type: DELETE_RESTAURANT_FAILURE, payload: err})})
 }
 
 export const INCREMENT_VISITS = 'INCREMENT_VISITS';
