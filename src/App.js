@@ -26,11 +26,12 @@ class App extends React.Component {
         </header>
   
 
-        <PrivateRoute exact path='/restaurants' component={Restaurants} />
+        <Route exact path='/restaurants' component={Restaurants} />
         <PrivateRoute exact path='/restaurants/:id' component={Restaurant} />
         <Route path='/login' component={Login}/>
+        
         <Route exact path="/" render={() => (
-          localStorage.getItem('token') ? (
+          this.props.loggedIn? (
             <Redirect to="/restaurants" />
           ) : (
             <Redirect to="/login" />
@@ -46,5 +47,10 @@ class App extends React.Component {
   
 }
 
+const mapPropstoState = (state) => ({
+    loggedIn: state.login.loggedIn
+  }
+)
 
-export default withRouter(connect(null, {getRestaurantsAction})(App));
+
+export default withRouter(connect(mapPropstoState, {getRestaurantsAction})(App));

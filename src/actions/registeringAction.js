@@ -15,6 +15,7 @@ export const registeringAction = (newUser) => dispatch =>  {
             dispatch({type: REGISTERING_SUCCESS, payload: res})}
         )
         .catch(err => {
+            window.alert("Registration failed. Please all fields need to be completed")
             dispatch({type: REGISTERING_FAILURE, payload: err})
         });
 

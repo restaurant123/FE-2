@@ -17,11 +17,21 @@ class Restaurants extends React.Component {
     }
 
     handleClickImage = (id) => {
-        this.props.history.push(`/restaurants/${id}`)
+        if(this.props.loggedIn) {
+            this.props.history.push(`/restaurants/${id}`);
+        }
+        else {
+            window.alert('you need to be logged to select restaurant');
+        }
     }
 
     handleClickDelete = (id) => {
-        this.props.deleteAction(id)
+        if(this.props.loggedIn)
+            this.props.deleteAction(id);
+        else {
+            window.alert('you need to be logged In to delete');
+        }
+        
     }
 
 
@@ -82,7 +92,8 @@ class Restaurants extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-        restaurants: state.restaurants.restaurants
+        restaurants: state.restaurants.restaurants,
+        loggedIn: state.login.loggedIn
     }
 )
 
