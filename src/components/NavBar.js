@@ -46,7 +46,7 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       document.querySelector(".login").classList.add("hidden");
       document.querySelector(".logout").classList.remove("hidden");
-      document.querySelector(".filter").classList.remove("hidden");
+      //document.querySelector(".filter").classList.remove("hidden");
       document.querySelector(".dropdown-toggle").classList.remove("hidden");
 
     }
@@ -92,9 +92,9 @@ class NavBar extends React.Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 
-              <DropdownToggle nav caret>
+              <DropdownToggle nav caret classname='hidden'>
                   <span className='filter'>Filter</span>
-                </DropdownToggle>
+              </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
                       <InputGroup>
