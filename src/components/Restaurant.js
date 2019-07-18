@@ -130,7 +130,6 @@ class Restaurant extends React.Component {
 
 const mapStateToProps = (state) => {
 
-    console.log(state.restaurants);
     return {
         restaurants: state.restaurants.restaurants,
         restaurant: state.restaurant.restaurant,

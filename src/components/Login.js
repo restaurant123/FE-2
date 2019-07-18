@@ -20,6 +20,10 @@ class Login extends React.Component {
       email: '',
       password: ''
     },
+    signInGuest: {
+      email:'john_doe@gmail.com',
+      password:'password'
+    }
   }
 
   handleSignUpChanges = (event) => {
@@ -45,6 +49,14 @@ class Login extends React.Component {
     this.props.loginAction(this.state.signIn)
       .then(() => {this.props.loggedIn? 
         this.props.history.push('/restaurants') : this.props.history.push('/login')
+      })
+  }
+
+  handleGuestLogin = (event) => {
+    event.preventDefault();
+    this.props.loginAction(this.state.signInGuest)
+      .then(()=> {this.props.loggedIn?
+          this.props.history.push('/restaurants'): this.props.history.push('/login')
       })
   }
 
@@ -122,6 +134,8 @@ class Login extends React.Component {
             <Button type='submit' onClick={this.handleSignInSubmit}>Sign In</Button>
           </Form>
         </Container>
+
+        <Button className='guest' type='submit' onClick={this.handleGuestLogin}>guest login</Button>
       </div>
     )
   }
