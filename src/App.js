@@ -12,8 +12,9 @@ import {connect} from 'react-redux';
 
 import {getRestaurantsAction} from './actions/restaurantsAction';
 
-reactGA.initialize('UA-144225007-1');
-reactGA.pageview('/restaurants');
+reactGA.initialize('UA-144225007-1', {
+  debug: true,
+});
 
 class App extends React.Component {
 

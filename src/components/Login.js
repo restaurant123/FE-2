@@ -1,10 +1,16 @@
-import React from 'react'
+import reactGA from 'react-ga';
+import React from 'react';
 import { Button, Form, Input, Label, Container, FormGroup, Col } from 'reactstrap';
-import {loginAction} from '../actions/loginAction'
-import {registeringAction} from '../actions/registeringAction'
+import {loginAction} from '../actions/loginAction';
+import {registeringAction} from '../actions/registeringAction';
 import { connect } from 'react-redux';
 
 class Login extends React.Component {
+
+  
+  componentDidMount() {
+    reactGA.pageview('/login');
+  }
 
   state = {
     signUp: {
