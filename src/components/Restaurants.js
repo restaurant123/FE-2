@@ -48,7 +48,7 @@ class Restaurants extends React.Component {
         return (
             <div className='restaurants' >
                 {this.props.restaurants.map( restaurant => 
-                    <Container key={restaurant.id}>
+                     <Container key={restaurant.id}>
                         <Row className='restaurant'>
                             <Col xs='6' >
                                 <div className="restaurant-img" 

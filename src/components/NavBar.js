@@ -51,7 +51,7 @@ class NavBar extends React.Component {
 
     }
     else {
-      document.querySelector(".login").classList.remove("hidden");
+      // document.querySelector(".login").classList.remove("hidden");
       document.querySelector(".logout").classList.add("hidden");
       document.querySelector(".filter").classList.add("hidden");
       document.querySelector(".dropdown-toggle").classList.add("hidden");
