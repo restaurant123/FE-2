@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {
   Collapse,
@@ -19,7 +19,7 @@ import {
   Input,
   InputGroupText } from 'reactstrap';
 
-import {logout, inLoginPage} from '../actions/loginAction';
+import {logout} from '../actions/loginAction';
 
 
 class NavBar extends React.Component {
@@ -65,6 +65,8 @@ class NavBar extends React.Component {
   handleLogoutClick = (event) => {
     event.preventDefault();
     this.props.logout();
+    this.props.history.push('/login')
+
   }
 
 
@@ -158,4 +160,4 @@ const mapPropstoState = (state) => ({
   inLoginPage: state.login.inLoginPage,
 })
 
-export default connect(mapPropstoState, {logout})(NavBar)
+export default withRouter(connect(mapPropstoState, {logout})(NavBar))

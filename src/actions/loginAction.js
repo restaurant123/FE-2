@@ -36,7 +36,6 @@ export const outLoginPageAction = () => dispatch => {
 
 export const LOGOUT = 'LOGOUT'
 export const logout = () => dispatch => {
-    console.log('logout action is being triggered!');
     localStorage.clear('token');
     dispatch({type:LOGOUT});
 
