@@ -1,7 +1,7 @@
 import reactGA from 'react-ga';
 import React from 'react';
 import { Button, Form, Input, Label, Container, FormGroup, Col } from 'reactstrap';
-import {loginAction} from '../actions/loginAction';
+import {loginAction, inLoginPageAction, outLoginPageAction} from '../actions/loginAction';
 import {registeringAction} from '../actions/registeringAction';
 import { connect } from 'react-redux';
 
@@ -10,6 +10,11 @@ class Login extends React.Component {
   
   componentDidMount() {
     reactGA.pageview('/login');
+    this.props.inLoginPageAction();
+  }
+
+  componentWillUnmount() {
+    this.props.outLoginPageAction()
   }
 
   state = {
@@ -153,4 +158,4 @@ const mapStateToProps = (state) => ({
   loggedIn: state.login.loggedIn
 });
 
-export default connect(mapStateToProps, {loginAction, registeringAction})(Login)
+export default connect(mapStateToProps, {loginAction, inLoginPageAction, outLoginPageAction, registeringAction})(Login)

@@ -19,7 +19,7 @@ import {
   Input,
   InputGroupText } from 'reactstrap';
 
-import {logout} from '../actions/loginAction';
+import {logout, inLoginPage} from '../actions/loginAction';
 
 
 class NavBar extends React.Component {
@@ -86,7 +86,8 @@ class NavBar extends React.Component {
                 <NavLink className='link' tag={Link} to='../restaurants'><span>Restaurants</span></NavLink>
               </NavItem>
 
-              <UncontrolledDropdown nav inNavbar>
+              {!this.props.inLoginPage && (
+                <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav>
                     <span>Filter</span>
                 </DropdownToggle>
@@ -117,16 +118,22 @@ class NavBar extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              )}
 
-              <NavItem>
+              
+              {!this.props.inLoginPage && (
+                <NavItem>
                 <NavLink className='link' tag={Link} to='../restaurants'><span>MyPassport</span></NavLink>
-              </NavItem>
+                </NavItem>
+              )}
+              
 
               {
-                (!this.props.loggedIn && 
+                (!this.props.loggedIn && !this.props.inLoginPage && (
                   <NavItem>
                     <NavLink className='link' tag={Link} to='/login'><span>Login</span></NavLink>
                   </NavItem>
+                  )
                 )
               }
 
@@ -147,7 +154,8 @@ class NavBar extends React.Component {
 }
 
 const mapPropstoState = (state) => ({
-  loggedIn: state.login.loggedIn
+  loggedIn: state.login.loggedIn,
+  inLoginPage: state.login.inLoginPage,
 })
 
 export default connect(mapPropstoState, {logout})(NavBar)

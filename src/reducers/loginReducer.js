@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "../actions/loginAction";
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, IN_LOGIN_PAGE, OUT_LOGIN_PAGE, LOGOUT } from "../actions/loginAction";
 import { REGISTERING_START, REGISTERING_SUCCESS, REGISTERING_FAILURE } from "../actions/registeringAction";;
 
 const initialState = {
@@ -7,7 +7,9 @@ const initialState = {
     loggedIn: false,
     newUser: null,
     registering: false,
-    error: null
+    error: null,
+    inLoginPage: false
+    
 }
 
 const loginReducer = (state=initialState, action) => {
@@ -33,6 +35,18 @@ const loginReducer = (state=initialState, action) => {
                 loginIn: false,
                 loggedIn: false,
                 loginError: action.payload
+            }
+
+        case IN_LOGIN_PAGE:
+            return {
+                ...state,
+                inLoginPage:true
+            }
+        
+        case OUT_LOGIN_PAGE:
+            return {
+                ...state,
+                inLoginPage: false
             }
 
         case LOGOUT:
