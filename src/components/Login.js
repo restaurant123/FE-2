@@ -76,7 +76,7 @@ class Login extends React.Component {
       <div className='login'>
         <Container className="signup">
           <h2>Sign Up</h2>
-          <Form >
+          <Form>
             <FormGroup>
               <Col>
                 <Label>Name</Label>

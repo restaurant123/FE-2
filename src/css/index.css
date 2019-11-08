@@ -156,31 +156,47 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 .login .signup {
   width: 65%;
   border: 1px solid green;
 }
 .login .signup h2 {
-  margin-bottom: 15px;
+  font-size: 4rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .login .signup form button {
   margin-bottom: 10px;
-  width: 80px;
-  font-size: 1.5rem;
+  width: 90px;
+  font-size: 2rem;
+  margin-left: 15px;
+}
+.login .signup form input {
+  height: 30px;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 .login .signin {
   width: 35%;
   border: 1px solid green;
 }
 .login .signin h2 {
-  margin-bottom: 15px;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .login .signin button {
-  margin-bottom: 10px;
-  width: 70px;
-  font-size: 1.5rem;
+  margin: 10px auto;
+  width: 90px;
+  font-size: 2rem;
+  margin-left: 15px;
+}
+.login .signin input {
+  height: 30px;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 .login .guest {
   margin-top: 60px;
@@ -286,7 +302,7 @@ h3 {
   width: 100%;
 }
 .navbar {
-  margin-top: 30px;
+  margin-top: 40px;
   background: #6200EE;
 }
 .navbar img {
