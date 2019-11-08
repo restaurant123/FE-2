@@ -35,12 +35,17 @@ class App extends React.Component {
         <Route path='/login' component={Login}/>
         
         <Route exact path="/" render={() => (
+            <Redirect to="/restaurants" />
+            )}
+         />
+
+        {/* <Route exact path="/" render={() => (
           this.props.loggedIn? (
             <Redirect to="/restaurants" />
           ) : (
             <Redirect to="/login" />
             )
-        )} />
+        )} /> */}
 
 
   

@@ -25,48 +25,44 @@ import {logout} from '../actions/loginAction';
 class NavBar extends React.Component {
 
 
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
+    // this.toggle = this.toggle.bind(this);
+    state = {
       isOpen: false,
     };
-  }
+  
 
-  componentDidMount() {
-    this.navItemsVisibility();
-  }
+  // componentDidMount() {
+  //   this.navItemsVisibility();
+  // }
 
-  componentDidUpdate() {
-    this.navItemsVisibility();
-  }
+  // componentDidUpdate() {
+  //   this.navItemsVisibility();
+  // }
 
-  navItemsVisibility = () => {
-    if (this.props.loggedIn) {
-      document.querySelector(".login").classList.add("hidden");
-      document.querySelector(".logout").classList.remove("hidden");
-      //document.querySelector(".filter").classList.remove("hidden");
-      document.querySelector(".dropdown-toggle").classList.remove("hidden");
+  // navItemsVisibility = () => {
+  //   if (this.props.loggedIn) {
+  //     // document.querySelector(".login").classList.add("hidden");
+  //     // document.querySelector(".logout").classList.remove("hidden");
+  //     //document.querySelector(".filter").classList.remove("hidden");
+  //     // document.querySelector(".dropdown-toggle").classList.remove("hidden");
 
-    }
-    else {
-      // document.querySelector(".login").classList.remove("hidden");
-      document.querySelector(".logout").classList.add("hidden");
-      document.querySelector(".filter").classList.add("hidden");
-      document.querySelector(".dropdown-toggle").classList.add("hidden");
-    }
-  }
+  //   }
+  //   else {
+  //     // document.querySelector(".login").classList.remove("hidden");
+  //     // document.querySelector(".logout").classList.add("hidden");
+  //     //document.querySelector(".filter").classList.add("hidden");
+  //     // document.querySelector(".dropdown-toggle").classList.add("hidden");
+  //   }
+  // }
 
 
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
 
   handleLogoutClick = (event) => {
-    console.log('logout has been clicked!')
     event.preventDefault();
     this.props.logout();
   }
@@ -76,25 +72,24 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar className= 'navbar' light expand="md">
+
           <Media object src='favicon.ico' alt="Logo" />
+
           <NavbarBrand href="/"><h1>Restaurant Passport</h1></NavbarBrand>
+
           <NavbarToggler onClick={this.toggle} />
+
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+
               <NavItem>
                 <NavLink className='link' tag={Link} to='../restaurants'><span>Restaurants</span></NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink className='link login' tag={Link} to='/login'><span>Login</span></NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className='link logout' tag={Link} to='/login' onClick={this.handleLogoutClick}><span>Logout</span></NavLink>
-              </NavItem>
+
               <UncontrolledDropdown nav inNavbar>
-                
-              <DropdownToggle nav caret classname='hidden'>
-                  <span className='filter'>Filter</span>
-              </DropdownToggle>
+                <DropdownToggle nav>
+                    <span>Filter</span>
+                </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
                       <InputGroup>
@@ -121,8 +116,28 @@ class NavBar extends React.Component {
                     <span className='item'>Reset</span>
                   </DropdownItem>
                 </DropdownMenu>
-
               </UncontrolledDropdown>
+
+              <NavItem>
+                <NavLink className='link' tag={Link} to='../restaurants'><span>MyPassport</span></NavLink>
+              </NavItem>
+
+              {
+                (!this.props.loggedIn && 
+                  <NavItem>
+                    <NavLink className='link' tag={Link} to='/login'><span>Login</span></NavLink>
+                  </NavItem>
+                )
+              }
+
+              {
+                (this.props.loggedIn && 
+                  <NavItem>
+                    <NavLink className='link' tag={Link} to='/login' onClick={this.handleLogoutClick}><span>Logout</span></NavLink>
+                  </NavItem>
+                )
+              }
+              
             </Nav>
           </Collapse>
         </Navbar>
