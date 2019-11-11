@@ -5,9 +5,10 @@ import {SINGLE_RESTAURANT_FETCH_START, SINGLE_RESTAURANT_FETCH_SUCCESS, SINGLE_R
 
 const initialState = {
     restaurant:null,
-    fetchingSinglrRestaurant: false,
+    fetchingSingleRestaurant: false,
     error: null,
-    visited: 0
+    visited: 0,
+    inSingleRestaurant: false 
 }
 
 const restaurantReducer = (state=initialState, action) => {

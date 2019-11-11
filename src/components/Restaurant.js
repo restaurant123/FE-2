@@ -11,7 +11,9 @@ import { Container, Row, Col, Button } from 'reactstrap';
 
 class Restaurant extends React.Component {
 
-
+    state={
+        inSingleRestaurantView: false 
+    }
 
     componentDidMount() {
         let id = parseInt(this.props.match.params.id, 10);
@@ -115,6 +117,7 @@ class Restaurant extends React.Component {
                                     </Col>
                                 </Row>
                                 <Link to='/restaurants'><Button className='back'>Back</Button></Link>
+                                
                             </Col>
                         </Row>
                     </Container>

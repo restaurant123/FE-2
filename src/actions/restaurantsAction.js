@@ -28,16 +28,15 @@ export const deleteAction = (id) => dispatch => {
 
 export const INCREMENT_VISITS = 'INCREMENT_VISITS';
 
-export const incrementVisits = (id) => dispatch =>  {
-    console.log ('incrementVisit actio started with id:', id);
-    return dispatch ({type:INCREMENT_VISITS, payload: id})
+export const incrementVisits = (id) => {
+    return ({type:INCREMENT_VISITS, payload: id})
 }
 
 
 export const DECREMENT_VISITS = 'DECREMENT_VISITS';
 
-export const decrementVisits = (id) => dispatch =>  {
-    dispatch ({type:DECREMENT_VISITS, payload: id})
+export const decrementVisits = (id) => {
+    return ({type:DECREMENT_VISITS, payload: id})
 }
 
 
