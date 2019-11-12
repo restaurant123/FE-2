@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { incrementVisits, decrementVisits } from '../actions/restaurantsAction';
-import { getRestaurantAction } from '../actions/restaurantAction';
 import { withRouter, Link } from 'react-router-dom';
 
 import { Container, Row, Col, Button } from 'reactstrap';
@@ -11,75 +10,78 @@ import { Container, Row, Col, Button } from 'reactstrap';
 
 class Restaurant extends React.Component {
 
-    state={
-        inSingleRestaurantView: false 
+    state = {
+        id: null,
+        restaurant: null
     }
 
     componentDidMount() {
-        let id = parseInt(this.props.match.params.id, 10);
-        this.props.getRestaurantAction(id)
+        const id = parseInt(this.props.match.params.id, 10);
+        console.log('id:', id)
+        const restaurant = this.props.restaurants.find(restaurant => restaurant.id === id);
+        this.setState({id: id, restaurant: restaurant});
+        
     }
 
     handleClickMinus = (event) => {
         event.preventDefault();
-
-        if ((this.props.restaurants.find(restaurant =>
-            restaurant.id === this.props.restaurant.id)).visited <= 0)
-            return;
-        else
-            this.props.decrementVisits(this.props.restaurant.id);
+        // this.props.decrementVisits(this.state.id);
+        this.setState({...this.state, restaurant:{...this.state.restaurant, visited: Math.max(0, this.state.restaurant.visited-1)}})
     }
 
     handleClickPlus = (event) => {
         event.preventDefault();
-        this.props.incrementVisits(this.props.restaurant.id);
+        this.setState({...this.state, restaurant: {...this.state.restaurant, visited: this.state.restaurant.visited+1}})
+        // this.props.incrementVisits(this.state.id);
     }
 
     render() {
 
+        console.log('state: ', this.state)
+
         return (
 
             <div className='single-restaurant'>
-                {!this.props.restaurant &&
+                {!this.state.restaurant &&
                     <p>Fetching this restaurant data...</p>}
 
-                {this.props.restaurant && (
+                {this.state.restaurant && (
                     <Container>
                         <Row>
                             <Col xs='6' >
                                 <div className="restaurant-img">
-                                    <img src={this.props.restaurant.image_url} alt="restaurant" />
+                                    <img src={this.state.restaurant.image_url} alt="restaurant" />
                                 </div>
                             </Col>
                             <Col xs='6'>
                                 <Row>
                                     <Col className='name'>
-                                        <h2>{this.props.restaurant.name}</h2>
+                                        <h2>{this.state.restaurant.name}</h2>
                                     </Col>
                                     <Col className='address'>
-                                        <p>{this.props.restaurant.address}</p>
-                                        <p>{this.props.restaurant.city}</p>
-                                        <p>{this.props.restaurant.state}</p>
+                                        <p>{this.state.restaurant.address}</p>
+                                        <p>{this.state.restaurant.city}</p>
+                                        <p>{this.state.restaurant.state}</p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col >
                                         <p className='description'>
-                                            {this.props.restaurant.description}
+                                            {this.state.restaurant.description}
                                         </p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col >
                                         <p className='details'>
-                                            <span>takeout:</span> {this.props.restaurant.takeout}
+                                            <span>takeout:</span> {this.state.restaurant.takeout}
                                         </p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col >
                                         <p className='details'>
-                                            <span>delivery:</span> {this.props.restaurant.delivery}
+                                            <span>delivery:</span> {this.state.restaurant.delivery}
                                         </p>
                                         <br />
                                     </Col>
@@ -87,14 +89,14 @@ class Restaurant extends React.Component {
                                 <Row>
                                     <Col >
                                         <p className='details'>
-                                            <span>opens at:</span> {this.props.restaurant.openHour} AM
+                                            <span>opens at:</span> {this.state.restaurant.openHour} AM
                                         </p>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col >
                                         <p className='details'>
-                                            <span>closes at:</span> {this.props.restaurant.closeHour} PM
+                                            <span>closes at:</span> {this.state.restaurant.closeHour} PM
                                         </p>
                                     </Col>
                                 </Row>
@@ -109,8 +111,7 @@ class Restaurant extends React.Component {
                                     <Col className='visit'>
                                         <span>visited:</span>
                                         <div className='number'>
-                                            {(this.props.restaurants.find(restaurant =>
-                                                restaurant.id === this.props.restaurant.id)).visited}
+                                            {this.state.restaurant.visited}
                                         </div>
                                         <button onClick={this.handleClickPlus}>+</button>
                                         <button onClick={this.handleClickMinus}>-</button>
@@ -135,10 +136,8 @@ const mapStateToProps = (state) => {
 
     return {
         restaurants: state.restaurants.restaurants,
-        restaurant: state.restaurant.restaurant,
-        visited: state.restaurant.visited
     }
 }
 
 
-export default withRouter(connect(mapStateToProps, { getRestaurantAction, incrementVisits, decrementVisits })(Restaurant));
+export default withRouter(connect(mapStateToProps, { incrementVisits, decrementVisits })(Restaurant));

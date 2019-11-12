@@ -60,13 +60,18 @@ const restaurantsReducer = (state=initialState, action) => {
         }
 
         case DECREMENT_VISITS: {
-            console.log('decrement visits reducer started with id:', action.payload);
-            return {
-                ...state,
-                restaurants: state.restaurants.map( restaurant =>
-                    restaurant.id === action.payload? 
-                    {...restaurant, visited: --restaurant.visited} : restaurant)
+            const restaurant = state.restaurants.find(restaurant => restaurant.id === action.payload)
+            if(restaurant.visited <= 0)
+                return state;
+            else {
+                return {
+                    ...state,
+                    restaurants: state.restaurants.map( restaurant =>
+                        restaurant.id === action.payload? 
+                        {...restaurant, visited: --restaurant.visited} : restaurant)
+                }
             }
+            
         }
             
         

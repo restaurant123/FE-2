@@ -1,4 +1,4 @@
-import reactGA from 'react-ga';
+// import reactGA from 'react-ga';
 import React from 'react'
 import {getRestaurantsAction, deleteAction} from '../actions/restaurantsAction';
 
@@ -15,15 +15,15 @@ class Restaurants extends React.Component {
     
 
     componentDidMount() {
-    reactGA.pageview('/restaurants');
+    // reactGA.pageview('/restaurants');
     }
 
     handleClickImage = (id) => {
 
-        reactGA.event( {
-            category: 'Restaurant info',
-            action: 'click on a restaurant',
-        })
+        // reactGA.event( {
+        //     category: 'Restaurant info',
+        //     action: 'click on a restaurant',
+        // })
 
         if(this.props.loggedIn) {
             this.props.history.push(`/restaurants/${id}`);
