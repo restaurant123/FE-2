@@ -227,11 +227,12 @@ h3 {
 }
 .restaurants .restaurant .address {
   text-align: end;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
 }
 .restaurants .restaurant .description {
+  text-align: justify;
   margin-top: 20px;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 .restaurants .restaurant .last-row {
   display: flex;
