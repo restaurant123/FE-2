@@ -88,7 +88,7 @@ class NavBar extends React.Component {
                 <NavLink className='link' tag={Link} to='../restaurants'><span>Restaurants</span></NavLink>
               </NavItem>
 
-              {!this.props.inLoginPage && (
+              {/* {!this.props.inLoginPage && (
                 <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav>
                     <span>Filter</span>
@@ -120,14 +120,14 @@ class NavBar extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              )}
+              )} */}
 
               
-              {!this.props.inLoginPage && (
+              {/* {!this.props.inLoginPage && (
                 <NavItem>
                 <NavLink className='link' tag={Link} to='../restaurants'><span>MyPassport</span></NavLink>
                 </NavItem>
-              )}
+              )} */}
               
 
               {
