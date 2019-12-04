@@ -68,8 +68,8 @@ class Restaurants extends React.Component {
                                     </Col>
                                 </Row>
 
-                                <Row className='summary'>
-                                    <p>{restaurant.summary}</p>
+                                <Row >
+                                    <p className='summary'>{restaurant.summary}</p>
                                 </Row>
                                 <Row>
                                     <Col >

@@ -233,7 +233,7 @@ h3 {
   font-size: 1.5rem;
   font-weight: bold;
   margin-top: 10px;
-  margin-left: 2px;
+  margin-left: 15px;
 }
 .restaurants .restaurant .description {
   text-align: justify;
@@ -269,6 +269,12 @@ h3 {
 }
 .single-restaurant .address p {
   font-size: 1.25rem;
+}
+.single-restaurant .summary {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 15px;
 }
 .single-restaurant .description {
   margin: 30px 0;

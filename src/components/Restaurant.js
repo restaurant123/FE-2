@@ -64,6 +64,10 @@ class Restaurant extends React.Component {
                                         <p>{this.state.restaurant.state}</p>
                                     </Col>
                                 </Row>
+
+                                <Row>
+                                    <p className='summary'>{this.state.restaurant.summary}</p>
+                                </Row>
                                 <Row>
                                     <Col >
                                         <p className='description'>
