@@ -1,6 +1,6 @@
 // import reactGA from 'react-ga';
 import React from 'react'
-import {getRestaurantsAction, deleteAction} from '../actions/restaurantsAction';
+import {getRestaurantsAction, deleteAction, RESTAURANT_FETCH_START} from '../actions/restaurantsAction';
 
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -66,6 +66,10 @@ class Restaurants extends React.Component {
                                         <p>{restaurant.city}</p>
                                         <p>{restaurant.state}</p>
                                     </Col>
+                                </Row>
+
+                                <Row className='summary'>
+                                    <p>{restaurant.summary}</p>
                                 </Row>
                                 <Row>
                                     <Col >
