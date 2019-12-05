@@ -18,7 +18,7 @@ class Restaurants extends React.Component {
     reactGA.pageview('/restaurants');
     }
 
-    handleClickImage = (id) => {
+    more = (id) => {
 
         reactGA.event( {
             category: 'Restaurant info',
@@ -33,15 +33,6 @@ class Restaurants extends React.Component {
         }
     }
 
-    handleClickDelete = (id) => {
-        if(this.props.loggedIn)
-            this.props.deleteAction(id);
-        else {
-            window.alert('you need to be logged In to delete');
-        }
-        
-    }
-
 
 
     render () {
@@ -52,13 +43,13 @@ class Restaurants extends React.Component {
                         <Row className='restaurant'>
                             <Col xs='6' >
                                 <div className="restaurant-img" 
-                                    onClick={()=>this.handleClickImage(restaurant.id)}>
+                                    onClick={()=>this.more(restaurant.id)}>
                                     <img src={restaurant.image_url} alt="restaurant" />
                                 </div>
                             </Col>
                             <Col xs='6'>
                                 <Row>
-                                    <Col className='name' onClick={()=>this.handleClickImage(restaurant.id)}>
+                                    <Col className='name' onClick={()=>this.more(restaurant.id)}>
                                         <h2>{restaurant.name}</h2>
                                     </Col>
                                     <Col className='address'>
@@ -80,8 +71,8 @@ class Restaurants extends React.Component {
                                     </Col>
                                     <Col xs='6'>
                                         <Button color='danger' onClick={()=>
-                                            this.handleClickDelete(restaurant.id)}>
-                                            Remove
+                                            this.more(restaurant.id)}>
+                                            More
                                         </Button>
                                     </Col>
                                 </Row>
