@@ -33,15 +33,6 @@ class Restaurants extends React.Component {
         }
     }
 
-    // handleClickDelete = (id) => {
-    //     if(this.props.loggedIn)
-    //         this.props.deleteAction(id);
-    //     else {
-    //         window.alert('you need to be logged In to delete');
-    //     }
-        
-    // }
-
 
 
     render () {
