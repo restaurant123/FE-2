@@ -1,6 +1,6 @@
 // import reactGA from 'react-ga';
 import React from 'react'
-import {getRestaurantsAction, deleteAction, RESTAURANT_FETCH_START} from '../actions/restaurantsAction';
+import {getRestaurantsAction, deleteAction} from '../actions/restaurantsAction';
 
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -83,7 +83,7 @@ class Restaurants extends React.Component {
                             </Col>
                         </Row>
                         
-                    </Container>
+                     </Container>
                 )}
                 
             </div>

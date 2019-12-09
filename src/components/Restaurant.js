@@ -17,7 +17,6 @@ class Restaurant extends React.Component {
 
     componentDidMount() {
         const id = parseInt(this.props.match.params.id, 10);
-        console.log('id:', id)
         const restaurant = this.props.restaurants.find(restaurant => restaurant.id === id);
         this.setState({id: id, restaurant: restaurant});
         
@@ -107,7 +106,7 @@ class Restaurant extends React.Component {
                                 <Row>
                                     <Col >
                                         <p className='details'>
-                                            from Mon-Sat
+                                            {'from ' + this.state.restaurant.openDay.slice(0,3) + '-' + this.state.restaurant.closeDay.slice(0,3)}
                                         </p>
                                     </Col>
                                 </Row>
