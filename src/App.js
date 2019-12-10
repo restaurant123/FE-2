@@ -5,6 +5,7 @@ import PrivateRoute from './utils/PrivateRoute'
 import Login from './components/Login'
 import Restaurants from './components/Restaurants';
 import Restaurant from './components/Restaurant';
+import UpdateForm from './components/UpdateForm';
 import NavBar from './components/NavBar'
 import { withRouter, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -32,6 +33,8 @@ class App extends React.Component {
 
         <Route exact path='/restaurants' component={Restaurants} />
         <PrivateRoute exact path='/restaurants/:id' component={Restaurant} />
+        <PrivateRoute exact path='/restaurant/update_form/:id' component={UpdateForm} />
+
         <Route path='/login' component={Login}/>
         
         <Route exact path="/" render={() => (

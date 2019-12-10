@@ -1,11 +1,13 @@
 import React from 'react';
 import {Form, FormGroup, Label, Input} from 'reactstrap';
+import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
-class updateForm extends ReactComponent {
+class UpdateForm extends React.Component {
 
     render() {
         return(
-
+            <>
             <p> Restaurant Name </p>
             <Form>
                 <FormGroup>
@@ -57,8 +59,16 @@ class updateForm extends ReactComponent {
                     <Input type='text' name='closing_day' id='closing_day' />
                 </FormGroup>
             </Form>
+
+            </>
         );
     }
-    
-    
 }
+
+const mapStateToProps = (state) => {
+    return {
+        restaurants: state.restaurants.restaurants,
+    }
+}
+
+export default connect(mapStateToProps)(UpdateForm);

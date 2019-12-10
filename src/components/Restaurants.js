@@ -100,4 +100,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default withRouter(connect(mapStateToProps, {getRestaurantsAction, deleteAction})(Restaurants));
+export default connect(mapStateToProps, {getRestaurantsAction, deleteAction})(Restaurants);
