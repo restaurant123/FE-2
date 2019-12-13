@@ -26,6 +26,7 @@ class Restaurants extends React.Component {
         })
 
         if(this.props.loggedIn) {
+            
             this.props.history.push(`/restaurants/${id}`);
         }
         else {

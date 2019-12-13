@@ -8,7 +8,24 @@ const initialState = {
     fetchingRestaurants: false,
     fetchingError: null,
     localDeleting: false,
-    localDeleteError: null
+    localDeleteError: null,
+
+    restaurant: {
+        name: '',
+        address: '',
+        city: '',
+        state: '',
+        zipcode: '',
+        description: '',
+        summary: '',
+        takeout: '',
+        delivery: '',
+        openHour: '',
+        closeHour: '',
+        openDay: '',
+        closeDay: '',
+        visited: '',
+    }
 }
 
 const restaurantsReducer = (state=initialState, action) => {
