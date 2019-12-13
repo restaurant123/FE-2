@@ -1,5 +1,5 @@
 import {RESTAURANT_FETCH_START, RESTAURANT_FETCH_SUCCESS, RESTAURANT_FETCH_FAILURE,
-        DELETE_RESTAURANT_START, DELETE_RESTAURANT_SUCCESS, DELETE_RESTAURANT_FAILURE,
+        // DELETE_RESTAURANT_START, DELETE_RESTAURANT_SUCCESS, DELETE_RESTAURANT_FAILURE,
         INCREMENT_VISITS, DECREMENT_VISITS
         } from '../actions/restaurantsAction';
 
@@ -45,26 +45,26 @@ const restaurantsReducer = (state=initialState, action) => {
             return({...state, fetchingRestaurants: false, fetchingError: action.payload });
 
         //Delete a single restaurant
-        case DELETE_RESTAURANT_START: 
-        return {
-            ...state,
-            deleting: true
-        }
+        // case DELETE_RESTAURANT_START: 
+        // return {
+        //     ...state,
+        //     deleting: true
+        // }
 
-        case DELETE_RESTAURANT_SUCCESS:
-            return {
-                ...state,
-                deleting: false,
-                deleteError: null,
-                restaurants: state.restaurants.filter(restaurant => restaurant.id !== action.payload.id)
-            }
+        // case DELETE_RESTAURANT_SUCCESS:
+        //     return {
+        //         ...state,
+        //         deleting: false,
+        //         deleteError: null,
+        //         restaurants: state.restaurants.filter(restaurant => restaurant.id !== action.payload.id)
+        //     }
 
-        case DELETE_RESTAURANT_FAILURE:
-            return {
-                ...state,
-                deleting: false,
-                deleteError: action.payload
-            }
+        // case DELETE_RESTAURANT_FAILURE:
+        //     return {
+        //         ...state,
+        //         deleting: false,
+        //         deleteError: action.payload
+        //     }
         //update numnber of visits of a restaurant
         case INCREMENT_VISITS: {
             console.log('increment visits reducer started with id:', action.payload);

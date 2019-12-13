@@ -1,6 +1,6 @@
 import reactGA from 'react-ga';
 import React from 'react'
-import {getRestaurantsAction, deleteAction} from '../actions/restaurantsAction';
+import {getRestaurantsAction} from '../actions/restaurantsAction';
 
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -26,7 +26,7 @@ class Restaurants extends React.Component {
         })
 
         if(this.props.loggedIn) {
-            
+
             this.props.history.push(`/restaurants/${id}`);
         }
         else {
@@ -97,4 +97,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default withRouter(connect(mapStateToProps, {getRestaurantsAction, deleteAction})(Restaurants));
+export default withRouter(connect(mapStateToProps, {getRestaurantsAction})(Restaurants));
