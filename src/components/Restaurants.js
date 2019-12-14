@@ -9,10 +9,8 @@ import {Button, Container, Row, Col} from 'reactstrap'
 
 
 
-
 class Restaurants extends React.Component {
 
-    
 
     componentDidMount() {
     reactGA.pageview('/restaurants');
@@ -27,7 +25,7 @@ class Restaurants extends React.Component {
 
         if(this.props.loggedIn) {
             this.props.selectRestaurantAction(id)
-            this.props.history.push(`/restaurants/${id}`);
+            this.props.history.push(`/restaurants/restaurant`);
         }
         else {
             window.alert('you need to be logged to select restaurant');
@@ -39,7 +37,7 @@ class Restaurants extends React.Component {
     render () {
         return (
             <div className='restaurants' >
-                {this.props.restaurants.map( restaurant => 
+                {this.props.restaurants && this.props.restaurants.map( restaurant => 
                      <Container key={restaurant.id}>
                         <Row className='restaurant'>
                             <Col xs='6' >

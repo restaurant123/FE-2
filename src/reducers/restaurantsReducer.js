@@ -58,7 +58,7 @@ const restaurantsReducer = (state=initialState, action) => {
         case DECREMENT_VISITS: {
             return {
                 ...state,
-                restaurants: {
+                restaurant: {
                     ...state.restaurant,
                     visited: --state.restaurant.visited
                 }

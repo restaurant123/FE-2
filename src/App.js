@@ -31,7 +31,7 @@ class App extends React.Component {
   
 
         <Route exact path='/restaurants' component={Restaurants} />
-        <PrivateRoute exact path='/restaurants/:id' component={Restaurant} />
+        <PrivateRoute exact path='/restaurants/restaurant' component={Restaurant} />
         <Route path='/login' component={Login}/>
         
         <Route exact path="/" render={() => (
