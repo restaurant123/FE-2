@@ -47,21 +47,29 @@ const restaurantsReducer = (state=initialState, action) => {
         /*****************************************************************************************************/
         case INCREMENT_VISITS: {
             return {
+
+                
                 ...state,
                 restaurant: {
                     ...state.restaurant, 
                     visited: ++state.restaurant.visited
-                } 
+                },
+                restaurants: state.restaurants.map(
+                    restaurant => restaurant.id === state.restaurant.id?
+                    {...restaurant, visited: state.restaurant.visited}:restaurant)
             }
         }
 
         case DECREMENT_VISITS: {
             return {
                 ...state,
-                restaurants: {
+                restaurant: {
                     ...state.restaurant,
                     visited: --state.restaurant.visited
-                }
+                },
+                restaurants: state.restaurants.map(
+                    restaurant => restaurant.id === state.restaurant.id?
+                        {...restaurant, visited: state.restaurant.visited} : restaurant)
             }
         }
             

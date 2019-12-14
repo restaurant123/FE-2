@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { incrementVisits, decrementVisits } from '../actions/restaurantsAction';
-import { getRestaurantAction } from '../actions/restaurantAction';
 import { withRouter, Link } from 'react-router-dom';
-
 import { Container, Row, Col, Button } from 'reactstrap';
 
 
@@ -13,11 +11,6 @@ class Restaurant extends React.Component {
 
     state={
         inSingleRestaurantView: false 
-    }
-
-    componentDidMount() {
-        //let id = parseInt(this.props.match.params.id, 10);
-        //this.props.getRestaurantAction(id)
     }
 
     handleClickMinus = (event) => {
@@ -138,4 +131,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default withRouter(connect(mapStateToProps, { getRestaurantAction, incrementVisits, decrementVisits })(Restaurant));
+export default withRouter(connect(mapStateToProps, {incrementVisits, decrementVisits })(Restaurant));
