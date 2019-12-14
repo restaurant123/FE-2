@@ -1,4 +1,4 @@
-import reactGA from 'react-ga';
+// import reactGA from 'react-ga';
 import React from 'react';
 import { Button, Form, Input, Label, Container, FormGroup, Col } from 'reactstrap';
 import {loginAction, inLoginPageAction, outLoginPageAction} from '../actions/loginAction';
@@ -9,7 +9,7 @@ class Login extends React.Component {
 
   
   componentDidMount() {
-    reactGA.pageview('/login');
+    // reactGA.pageview('/login');
     this.props.inLoginPageAction();
   }
 

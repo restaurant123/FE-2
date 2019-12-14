@@ -1,4 +1,4 @@
-import reactGA from 'react-ga';
+// import reactGA from 'react-ga';
 import React from 'react'
 import {selectRestaurantAction} from '../actions/restaurantsAction';
 
@@ -13,7 +13,7 @@ class Restaurants extends React.Component {
 
 
     componentDidMount() {
-    reactGA.pageview('/restaurants');
+    // reactGA.pageview('/restaurants');
     }
 
     more = (id) => {

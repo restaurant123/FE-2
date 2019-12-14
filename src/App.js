@@ -1,4 +1,4 @@
-import reactGA from 'react-ga';
+// import reactGA from 'react-ga';
 import React from 'react';
 import {Route} from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute'
