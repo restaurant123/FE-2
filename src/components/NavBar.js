@@ -9,15 +9,15 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Media,
-  InputGroup,
-  InputGroupAddon,
-  Input,
-  InputGroupText } from 'reactstrap';
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
+  // InputGroup,
+  // InputGroupAddon,
+  // Input,
+  // InputGroupText,
+  Media,} from 'reactstrap';
 
 import {logout} from '../actions/loginAction';
 

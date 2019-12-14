@@ -1,6 +1,5 @@
 import {RESTAURANT_FETCH_START, RESTAURANT_FETCH_SUCCESS, RESTAURANT_FETCH_FAILURE,
-        // DELETE_RESTAURANT_START, DELETE_RESTAURANT_SUCCESS, DELETE_RESTAURANT_FAILURE,
-        INCREMENT_VISITS, DECREMENT_VISITS
+        INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT
         } from '../actions/restaurantsAction';
 
 const initialState = {
@@ -10,22 +9,7 @@ const initialState = {
     localDeleting: false,
     localDeleteError: null,
 
-    restaurant: {
-        name: '',
-        address: '',
-        city: '',
-        state: '',
-        zipcode: '',
-        description: '',
-        summary: '',
-        takeout: '',
-        delivery: '',
-        openHour: '',
-        closeHour: '',
-        openDay: '',
-        closeDay: '',
-        visited: '',
-    }
+    restaurant: {}
 }
 
 const restaurantsReducer = (state=initialState, action) => {
@@ -34,7 +18,9 @@ const restaurantsReducer = (state=initialState, action) => {
  
     switch(action.type) {
 
-        // Fetching all restaurants
+        /*****************************************************************************************************/
+        /*                                      Update List of Restauarants                                  */
+        /*****************************************************************************************************/
         case RESTAURANT_FETCH_START:
             return({...state, fetchingRestaurants: true});
 
@@ -44,45 +30,38 @@ const restaurantsReducer = (state=initialState, action) => {
         case RESTAURANT_FETCH_FAILURE:
             return({...state, fetchingRestaurants: false, fetchingError: action.payload });
 
-        //Delete a single restaurant
-        // case DELETE_RESTAURANT_START: 
-        // return {
-        //     ...state,
-        //     deleting: true
-        // }
 
-        // case DELETE_RESTAURANT_SUCCESS:
-        //     return {
-        //         ...state,
-        //         deleting: false,
-        //         deleteError: null,
-        //         restaurants: state.restaurants.filter(restaurant => restaurant.id !== action.payload.id)
-        //     }
+        /*****************************************************************************************************/
+        /*                                      Update Single Restaurant Selection                           */
+        /*****************************************************************************************************/
 
-        // case DELETE_RESTAURANT_FAILURE:
-        //     return {
-        //         ...state,
-        //         deleting: false,
-        //         deleteError: action.payload
-        //     }
-        //update numnber of visits of a restaurant
-        case INCREMENT_VISITS: {
-            console.log('increment visits reducer started with id:', action.payload);
+        case SELECT_RESTAURANT: {
             return {
                 ...state,
-                restaurants: state.restaurants.map( restaurant =>
-                    restaurant.id === action.payload? 
-                    {...restaurant, visited: ++restaurant.visited} : restaurant)
+                restaurant: state.restaurants.find(restaurant => restaurant.id == action.payload)
+            }
+        }
+
+        /*****************************************************************************************************/
+        /*                                      Update Number of visits                                      */
+        /*****************************************************************************************************/
+        case INCREMENT_VISITS: {
+            return {
+                ...state,
+                restaurant: {
+                    ...state.restaurant, 
+                    visited: ++state.restaurant.visited
+                } 
             }
         }
 
         case DECREMENT_VISITS: {
-            console.log('decrement visits reducer started with id:', action.payload);
             return {
                 ...state,
-                restaurants: state.restaurants.map( restaurant =>
-                    restaurant.id === action.payload? 
-                    {...restaurant, visited: --restaurant.visited} : restaurant)
+                restaurants: {
+                    ...state.restaurant,
+                    visited: --state.restaurant.visited
+                }
             }
         }
             
