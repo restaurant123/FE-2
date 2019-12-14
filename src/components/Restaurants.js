@@ -1,6 +1,6 @@
 import reactGA from 'react-ga';
 import React from 'react'
-import {getRestaurantsAction, deleteAction} from '../actions/restaurantsAction';
+import {selectRestaurantAction} from '../actions/restaurantsAction';
 
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -20,13 +20,13 @@ class Restaurants extends React.Component {
 
     more = (id) => {
 
-        reactGA.event( {
-            category: 'Restaurant info',
-            action: 'click on a restaurant',
-        })
+        // reactGA.event( {
+        //     category: 'Restaurant info',
+        //     action: 'click on a restaurant',
+        // })
 
         if(this.props.loggedIn) {
-            
+            this.props.selectRestaurantAction(id)
             this.props.history.push(`/restaurants/${id}`);
         }
         else {
@@ -91,10 +91,11 @@ class Restaurants extends React.Component {
 
 const mapStateToProps = (state) => ({
         restaurants: state.restaurants.restaurants,
+        restaurant: state.restaurants.restaurant,
         loggedIn: state.login.loggedIn
     }
 )
 
 
 
-export default withRouter(connect(mapStateToProps, {getRestaurantsAction, deleteAction})(Restaurants));
+export default withRouter(connect(mapStateToProps, {selectRestaurantAction})(Restaurants));

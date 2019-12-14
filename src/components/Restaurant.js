@@ -16,15 +16,14 @@ class Restaurant extends React.Component {
     }
 
     componentDidMount() {
-        let id = parseInt(this.props.match.params.id, 10);
-        this.props.getRestaurantAction(id)
+        //let id = parseInt(this.props.match.params.id, 10);
+        //this.props.getRestaurantAction(id)
     }
 
     handleClickMinus = (event) => {
         event.preventDefault();
 
-        if ((this.props.restaurants.find(restaurant =>
-            restaurant.id === this.props.restaurant.id)).visited <= 0)
+        if (this.props.restaurant.visited == 0)
             return;
         else
             this.props.decrementVisits(this.props.restaurant.id);
@@ -108,8 +107,7 @@ class Restaurant extends React.Component {
                                     <Col className='visit'>
                                         <span>visited:</span>
                                         <div className='number'>
-                                            {(this.props.restaurants.find(restaurant =>
-                                                restaurant.id === this.props.restaurant.id)).visited}
+                                            {this.props.restaurant.visited}
                                         </div>
                                         <button onClick={this.handleClickPlus}>+</button>
                                         <button onClick={this.handleClickMinus}>-</button>
@@ -134,8 +132,8 @@ const mapStateToProps = (state) => {
 
     return {
         restaurants: state.restaurants.restaurants,
-        restaurant: state.restaurant.restaurant,
-        visited: state.restaurant.visited
+        restaurant: state.restaurants.restaurant,
+        visited: state.restaurants.restaurant.visited
     }
 }
 
