@@ -38,7 +38,7 @@ const restaurantsReducer = (state=initialState, action) => {
         case SELECT_RESTAURANT: {
             return {
                 ...state,
-                restaurant: state.restaurants.find(restaurant => restaurant.id == action.payload)
+                restaurant: state.restaurants.find(restaurant => restaurant.id === action.payload)
             }
         }
 
@@ -47,37 +47,26 @@ const restaurantsReducer = (state=initialState, action) => {
         /*****************************************************************************************************/
         case INCREMENT_VISITS: {
             return {
-
-                
                 ...state,
-                restaurant: {
-                    ...state.restaurant, 
-                    visited: ++state.restaurant.visited
-                },
                 restaurants: state.restaurants.map(
                     restaurant => restaurant.id === state.restaurant.id?
-                    {...restaurant, visited: state.restaurant.visited}:restaurant)
+                    {...restaurant, visited: ++state.restaurant.visited}:restaurant)
             }
         }
 
         case DECREMENT_VISITS: {
             return {
                 ...state,
-                restaurant: {
-                    ...state.restaurant,
-                    visited: --state.restaurant.visited
-                },
                 restaurants: state.restaurants.map(
                     restaurant => restaurant.id === state.restaurant.id?
-                        {...restaurant, visited: state.restaurant.visited} : restaurant)
+                        {...restaurant, visited: --state.restaurant.visited} : restaurant)
             }
         }
             
-        
         default:
         return state;
     }
     
 }
-
+ 
 export default restaurantsReducer;

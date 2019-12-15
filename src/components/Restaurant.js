@@ -16,7 +16,7 @@ class Restaurant extends React.Component {
     handleClickMinus = (event) => {
         event.preventDefault();
 
-        if (this.props.restaurant.visited == 0)
+        if (this.props.restaurant.visited === 0)
             return;
         else
             this.props.decrementVisits(this.props.restaurant.id);
