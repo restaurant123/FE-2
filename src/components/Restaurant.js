@@ -107,6 +107,7 @@ class Restaurant extends React.Component {
                                     </Col>
                                 </Row>
                                 <Link to='/restaurants'><Button className='back'>Back</Button></Link>
+                                <Link to='/restaurants/restaurant/updateForm'><Button>Update</Button></Link>
                                 
                             </Col>
                         </Row>

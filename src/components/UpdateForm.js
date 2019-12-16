@@ -1,3 +1,8 @@
+import React from 'react';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {Form, FormGroup, Label, Input} from 'reactstrap';
+
 class UpdateForm extends React.Component {
 
     state = {
