@@ -1,11 +1,14 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Form, FormGroup, Label, Input} from 'reactstrap';
+import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import {updateRestaurantAction} from "../actions/restaurantsAction";
 
 class UpdateForm extends React.Component {
         
     state = {
+        id: this.props.restaurant.id,
+        image_url: this.props.restaurant.image_url,
         name: this.props.restaurant.name,
         address: this.props.restaurant.address,
         city: this.props.restaurant.city,
@@ -22,28 +25,41 @@ class UpdateForm extends React.Component {
         visited: this.props.restaurant.visited,
     };
 
+    handleInputChange = (event) => {
+        this.setState({[event.target.name]: event.target.value})
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("in handleSubmit")
+        this.props.updateRestaurantAction(this.state);
+        this.props.history.push("/restaurants/restaurant");
+    }
+
 
     render() {
 
-        console.log(this.state);
+        console.log(this.props);
         return(
             <div className="update">
 
                 <p> Please edit the relevant fields </p>
 
+                <p>{this.state.name}</p>
+
                 <Form>
                     <FormGroup>
                         <Label for='street'>Street Address</Label>
-                        <Input type='text' name='street' id='street' value={this.state.address} />
+                        <Input type='text' name='street' id='street' value={this.state.address} onChange={this.handleInputChange} />
                     </FormGroup>
 
                     <FormGroup>
                         <Label for='city'>City</Label>
-                        <Input type='text' name='city' id='city' value={this.state.city} />
+                        <Input type='text' name='city' id='city' value={this.state.city} onChange={this.handleInputChange} />
                     </FormGroup>
                     <FormGroup>
                         <Label for='state'>State</Label>
-                        <Input type='select' name='state' id='state' value={this.state.state} >
+                        <Input type='select' name='state' id='state' value={this.state.state} onChange={this.handleInputChange} >
                             <option value="Alabama">Alabama</option>
                             <option value="Alaska">Alaska</option>
                             <option value="Arizona">Arizona</option>
@@ -100,30 +116,30 @@ class UpdateForm extends React.Component {
 
                     <FormGroup>
                         <Label for='zipCode'>Zipcode</Label>
-                        <Input type='number' name='zipCode' id='zipCode' pattern="[0-9]{5}" value={this.state.zipCode} />
+                        <Input type='number' name='zipCode' id='zipCode' pattern="[0-9]{5}" value={this.state.zipCode} onChange={this.handleInputChange} />
                     </FormGroup>
 
                     <FormGroup>
                         <Label for='description'>Description</Label>
-                        <Input type='textarea' name='description' id='description' value={this.state.description} />
+                        <Input type='textarea' name='description' id='description' value={this.state.description} onChange={this.handleInputChange} />
                     </FormGroup>
 
                     <FormGroup>
                         <Label for='summary'>Summary</Label>
-                        <Input type='text' name='summary' id='summary' value={this.state.summary} />
+                        <Input type='text' name='summary' id='summary' value={this.state.summary} onChange={this.handleInputChange} />
                     </FormGroup>
 
                     <FormGroup tag="fieldset">
                         <legend> Takeout</legend>
                         <FormGroup check>
                             <Label check>
-                                <Input type='radio' name='takeout_yes' id='takeout_yes' defaultChecked={this.state.takeout === 'yes'} /> {' '}
+                                <Input type='radio' name='takeout' value='yes' checked={this.state.takeout === 'yes'} onChange={this.handleInputChange} /> {' '}
                                     Yes
                             </Label>
                         </FormGroup>
                         <FormGroup check>
                             <Label check>
-                                <Input type='radio' name='takeout_no' id='takeout_no' defaultChecked={this.state.takeout === 'no'}/> {' '}
+                                <Input type='radio' name='takeout' value='no' checked={this.state.takeout === 'no'} onChange={this.handleInputChange}/> {' '}
                                     No
                             </Label>
                         </FormGroup>
@@ -133,13 +149,13 @@ class UpdateForm extends React.Component {
                         <legend>Delivery</legend>
                         <FormGroup check>
                             <Label check>
-                                <Input type='radio' name='delivery_yes' id='delivery_yes' defaultChecked={this.state.delivery === 'yes'}/> {' '}
+                                <Input type='radio' name='delivery' value='yes' checked={this.state.delivery === 'yes'} onChange={this.handleInputChange}/> {' '}
                                     Yes
                             </Label>
                         </FormGroup>
                         <FormGroup check>
                             <Label check>
-                                <Input type='radio' name='delivery_no' id='delivery_no' defaultChecked={this.state.delivery === 'no'}/> {' '}
+                                <Input type='radio' name='delivery' value='no' checked={this.state.delivery === 'no'} onChange={this.handleInputChange}/> {' '}
                                     No
                             </Label>
                         </FormGroup>
@@ -147,7 +163,7 @@ class UpdateForm extends React.Component {
 
                     <FormGroup>
                         <Label for='openHour'>Opening Time</Label>
-                        <Input type='select' name='openHour' id='openHour' value={this.state.openHour} >
+                        <Input type='select' name='openHour' id='openHour' value={this.state.openHour} onChange={this.handleInputChange} >
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -165,7 +181,7 @@ class UpdateForm extends React.Component {
 
                     <FormGroup>
                         <Label for='closeHour'>Closing Time</Label>
-                        <Input type='select' name='closeHour' id='closeHour' value={this.state.closeHour} >
+                        <Input type='select' name='closeHour' id='closeHour' value={this.state.closeHour} onChange={this.handleInputChange} >
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -183,7 +199,7 @@ class UpdateForm extends React.Component {
 
                     <FormGroup>
                         <Label for='openDay'>Opening Day</Label>
-                        <Input type='select' name='openDay' id='openDay' value={this.state.openDay} >
+                        <Input type='select' name='openDay' id='openDay' value={this.state.openDay} onChange={this.handleInputChange} >
                             <option>Monday</option>
                             <option>Tuesday</option>
                             <option>Wednesday</option>
@@ -196,7 +212,7 @@ class UpdateForm extends React.Component {
 
                     <FormGroup>
                         <Label for='closeday'>Closing Day</Label>
-                        <Input type='select' name='closeday' id='closeday' value={this.state.closeDay} >
+                        <Input type='select' name='closeday' id='closeday' value={this.state.closeDay} onChange={this.handleInputChange} >
                             <option>Monday</option>
                             <option>Tuesday</option>
                             <option>Wednesday</option>
@@ -206,6 +222,8 @@ class UpdateForm extends React.Component {
                             <option>Sunday</option>
                         </Input>
                     </FormGroup>
+
+                    <Button onClick={this.handleSubmit}>Submit</Button>
                 </Form>
             </div>
            
@@ -219,4 +237,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(UpdateForm));
+export default withRouter(connect(mapStateToProps, {updateRestaurantAction})(UpdateForm));
