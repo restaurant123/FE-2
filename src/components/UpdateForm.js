@@ -36,6 +36,21 @@ class UpdateForm extends React.Component {
         this.props.history.push("/restaurants/restaurant");
     }
 
+    handleClickPlus = (event) => {
+        event.preventDefault();
+        this.setState((prevState) => {return{visited: prevState.visited + 1}});
+    }
+
+    handleClickMinus = (event) => {
+        event.preventDefault();
+        if(this.state.visited === 0)
+            return;
+        else
+            this.setState( (prevState) => {
+                return {visited: prevState.visited - 1};
+            });
+    }
+
 
     render() {
 
@@ -159,6 +174,12 @@ class UpdateForm extends React.Component {
                                     No
                             </Label>
                         </FormGroup>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <span>visited: {this.state.visited}</span>
+                        <button onClick={this.handleClickPlus}>+</button>
+                        <button onClick={this.handleClickMinus}>-</button>
                     </FormGroup>
 
                     <FormGroup>
