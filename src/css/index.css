@@ -334,3 +334,39 @@ h3 {
   font-size: 0.9rem;
   padding: 2px;
 }
+.update {
+  border: 1px solid blue;
+  padding: 10px 10px;
+  font-size: 1.4rem;
+}
+.update p {
+  margin-bottom: 15px;
+}
+.update .name {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.update input,
+.update textarea,
+.update select {
+  font-size: 1.3rem;
+}
+.update .form-group {
+  margin-bottom: 20px;
+}
+.update label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.update .visits {
+  margin-left: 5px;
+}
+.update .buttons {
+  justify-content: center;
+}
+.update .buttons .button {
+  background: #6200EE;
+  width: 90px;
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
