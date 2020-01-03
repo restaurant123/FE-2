@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Form, FormGroup, Label, Input, Button, Row, Col} from 'reactstrap';
+import {Form, FormGroup, FormFeedback, Label, Input, Button, Row, Col} from 'reactstrap';
 import {updateRestaurantAction} from "../actions/restaurantsAction";
 
 class UpdateForm extends React.Component {
@@ -31,7 +31,6 @@ class UpdateForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log("in handleSubmit")
         this.props.updateRestaurantAction(this.state);
         this.props.history.push("/restaurants/restaurant");
     }
@@ -59,21 +58,16 @@ class UpdateForm extends React.Component {
 
     render() {
 
-        console.log(this.props);
         return(
             <div className="update">
 
                 <p> Please edit the relevant fields for: <span className='name'>{this.state.name}</span> </p>
 
                 <Form>
-
-
                     <FormGroup>
-                        <Label for='street'>Street Address</Label>
-                        <Input type='text' name='street' id='street' value={this.state.address} onChange={this.handleInputChange} />
+                        <Label for='address'>Street Address</Label>
+                        <Input type='text' name='address' id='address' value={this.state.address} onChange={this.handleInputChange} />
                     </FormGroup>
-
-                    
 
                     <Row form>
 
@@ -146,10 +140,9 @@ class UpdateForm extends React.Component {
                         <Col md={2}>
                             <FormGroup>
                                 <Label for='zipCode'>Zipcode</Label>
-                                <Input type='number' name='zipCode' id='zipCode' pattern="[0-9]{5}" value={this.state.zipCode} onChange={this.handleInputChange} />
+                                <Input type='number' name='zipCode' id='zipCode' value={this.state.zipCode} onChange={this.handleInputChange} />
                             </FormGroup>
                         </Col>
-                            
                     </Row>
                     
 
@@ -164,57 +157,44 @@ class UpdateForm extends React.Component {
                     </FormGroup>
 
                     <Row>
-                        <Col xs={2}>
-                            <FormGroup tag='fieldset'>
+                        <Col sm={3} className='takeout'>
+                            <FormGroup>
                                 <Row>
-                                    <Col>
-                                        <legend> Takeout:</legend>
-                                    </Col>
-                                    <Col>
-                                        <FormGroup check>
-                                            <Label check>
-                                                <Input type='radio' name='takeout' value='yes' checked={this.state.takeout === 'yes'} onChange={this.handleInputChange} /> {' '}
-                                                    Yes
-                                            </Label>
-                                        </FormGroup>
-                                        <FormGroup check>
-                                            <Label check>
-                                                <Input type='radio' name='takeout' value='no' checked={this.state.takeout === 'no'} onChange={this.handleInputChange}/> {' '}
-                                                    No
-                                            </Label>
-                                        </FormGroup>
-                                    </Col>
-                                    
+                                    <FormGroup check inline>
+                                        <div> Takeout:</div>
+                                        <Label check>
+                                            <Input className='radio' type='radio' name='takeout' value='yes' checked={this.state.takeout === 'yes'} onChange={this.handleInputChange} /> {' '}
+                                                Yes
+                                        </Label>
+                                    </FormGroup>
+                                    <FormGroup check inline>
+                                        <Label check>
+                                            <Input className='radio' type='radio' name='takeout' value='no' checked={this.state.takeout === 'no'} onChange={this.handleInputChange}/> {' '}
+                                                No
+                                        </Label>
+                                    </FormGroup>
                                 </Row>
                             </FormGroup>
                         </Col>
                         
-                        <Col xs={2}>
-                                <FormGroup tag='fieldset'>
+                        <Col sm={3} className='delivery'>
+                                <FormGroup >
                                 <Row >
-                                    <Col>
-                                     <legend>Delivery:</legend>
-                                    </Col>
-
-                                    <Col>
-                                        <FormGroup check>
-                                            <Label check>
-                                                <Input type='radio' name='delivery' value='yes' checked={this.state.delivery === 'yes'} onChange={this.handleInputChange}/> {' '}
-                                                    Yes
-                                            </Label>
-                                        </FormGroup>
-                                        <FormGroup check>
-                                            <Label check>
-                                                <Input type='radio' name='delivery' value='no' checked={this.state.delivery === 'no'} onChange={this.handleInputChange}/> {' '}
-                                                    No
-                                            </Label>
-                                        </FormGroup>
-                                    </Col>
-                                    
+                                    <FormGroup check inline>
+                                        <div>Delivery:</div>
+                                        <Label check>
+                                            <Input className='radio' type='radio' name='delivery' value='yes' checked={this.state.delivery === 'yes'} onChange={this.handleInputChange}/> {' '}
+                                                Yes
+                                        </Label>
+                                    </FormGroup>
+                                    <FormGroup check inline>
+                                        <Label check>
+                                            <Input type='radio' name='delivery' value='no' checked={this.state.delivery === 'no'} onChange={this.handleInputChange}/> {' '}
+                                                No
+                                        </Label>
+                                    </FormGroup>
                                     </Row>
-
                                 </FormGroup>
-                    
                         </Col>
                     </Row>
 
