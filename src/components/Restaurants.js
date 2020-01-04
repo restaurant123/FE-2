@@ -59,6 +59,9 @@ class Restaurants extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col >
+                                        <p className='summary'>
+                                            {restaurant.summary}
+                                        </p>    
                                         <p className='description'>
                                             {restaurant.description}
                                         </p>

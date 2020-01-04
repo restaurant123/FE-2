@@ -229,6 +229,11 @@ h3 {
   text-align: end;
   font-size: 1.4rem;
 }
+.restaurants .restaurant .summary {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
 .restaurants .restaurant .description {
   text-align: justify;
   margin-top: 20px;
