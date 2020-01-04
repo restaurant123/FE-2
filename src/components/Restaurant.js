@@ -55,6 +55,10 @@ class Restaurant extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col >
+
+                                        <p className='summary'>
+                                            {this.props.restaurant.summary}
+                                        </p>
                                         <p className='description'>
                                             {this.props.restaurant.description}
                                         </p>
