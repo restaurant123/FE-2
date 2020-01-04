@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 
 
 import {getRestaurantsAction} from './actions/restaurantsAction';
+import UpdateForm from './components/UpdateForm';
 
 // reactGA.initialize('UA-144225007-1', {
 //   debug: true,
@@ -32,6 +33,7 @@ class App extends React.Component {
 
         <Route exact path='/restaurants' component={Restaurants} />
         <PrivateRoute exact path='/restaurants/restaurant' component={Restaurant} />
+        <PrivateRoute exact path='/restaurants/restaurant/updateForm' component={UpdateForm} />
         <Route path='/login' component={Login}/>
         
         <Route exact path="/" render={() => (

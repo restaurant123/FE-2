@@ -47,5 +47,13 @@ export const decrementVisits = (id) => {
     return ({type:DECREMENT_VISITS, payload: id})
 }
 
+/********************************************************************************/
+/*                      Update Restaurant with user changes                     */
+/********************************************************************************/
+export const UPDATE_RESTAURANT = "UPDATE_RESTAURANT";
+
+export const updateRestaurantAction = (restaurant) => dispatch => {
+    dispatch({type: UPDATE_RESTAURANT, payload: restaurant})
+}
 
 

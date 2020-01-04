@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { incrementVisits, decrementVisits } from '../actions/restaurantsAction';
+// import { incrementVisits, decrementVisits } from '../actions/restaurantsAction';
 import { withRouter, Link } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'reactstrap';
 
@@ -11,20 +11,6 @@ class Restaurant extends React.Component {
 
     state={
         inSingleRestaurantView: false 
-    }
-
-    handleClickMinus = (event) => {
-        event.preventDefault();
-
-        if (this.props.restaurant.visited === 0)
-            return;
-        else
-            this.props.decrementVisits(this.props.restaurant.id);
-    }
-
-    handleClickPlus = (event) => {
-        event.preventDefault();
-        this.props.incrementVisits(this.props.restaurant.id);
     }
 
     render() {
@@ -55,6 +41,10 @@ class Restaurant extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col >
+
+                                        <p className='summary'>
+                                            {this.props.restaurant.summary}
+                                        </p>
                                         <p className='description'>
                                             {this.props.restaurant.description}
                                         </p>
@@ -102,11 +92,10 @@ class Restaurant extends React.Component {
                                         <div className='number'>
                                             {this.props.restaurant.visited}
                                         </div>
-                                        <button onClick={this.handleClickPlus}>+</button>
-                                        <button onClick={this.handleClickMinus}>-</button>
                                     </Col>
                                 </Row>
-                                <Link to='/restaurants'><Button className='back'>Back</Button></Link>
+                                <Link to='/restaurants'><Button className='button'>Back</Button></Link>
+                                <Link to='/restaurants/restaurant/updateForm'><Button className='button'>Update</Button></Link>
                                 
                             </Col>
                         </Row>
@@ -124,11 +113,9 @@ class Restaurant extends React.Component {
 const mapStateToProps = (state) => {
 
     return {
-        restaurants: state.restaurants.restaurants,
         restaurant: state.restaurants.restaurant,
-        visited: state.restaurants.restaurant.visited
     }
 }
 
 
-export default withRouter(connect(mapStateToProps, {incrementVisits, decrementVisits })(Restaurant));
+export default withRouter(connect(mapStateToProps)(Restaurant));

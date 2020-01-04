@@ -1,5 +1,5 @@
 import {RESTAURANT_FETCH_START, RESTAURANT_FETCH_SUCCESS, RESTAURANT_FETCH_FAILURE,
-        INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT
+        INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT, UPDATE_RESTAURANT
         } from '../actions/restaurantsAction';
 
 const initialState = {
@@ -19,7 +19,7 @@ const restaurantsReducer = (state=initialState, action) => {
     switch(action.type) {
 
         /*****************************************************************************************************/
-        /*                                      Update List of Restauarants                                  */
+        /*                                      Update List of Restaurants                                  */
         /*****************************************************************************************************/
         case RESTAURANT_FETCH_START:
             return({...state, fetchingRestaurants: true});
@@ -63,6 +63,25 @@ const restaurantsReducer = (state=initialState, action) => {
                         {...restaurant, visited: restaurant.visited - 1} : restaurant),
                 restaurant: {...state.restaurant, visited: state.restaurant.visited - 1}
             }
+        }
+
+        /*****************************************************************************************************/
+        /*                                      Update Restaurant with user changes                          */
+        /*****************************************************************************************************/
+
+        case UPDATE_RESTAURANT: {
+            console.log('in update_restaurant_reducer: ', action.payload)
+            return (
+                {
+                    ...state,
+                    restaurants: state.restaurants.map((restaurant) => 
+                        restaurant.id===action.payload.id?
+                            action.payload : restaurant
+                    ),
+                    restaurant: action.payload
+
+                }
+            )
         }
             
         default:
