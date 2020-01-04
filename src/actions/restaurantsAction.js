@@ -53,7 +53,6 @@ export const decrementVisits = (id) => {
 export const UPDATE_RESTAURANT = "UPDATE_RESTAURANT";
 
 export const updateRestaurantAction = (restaurant) => dispatch => {
-    console.log('in updateRestaurantAction')
     dispatch({type: UPDATE_RESTAURANT, payload: restaurant})
 }
 

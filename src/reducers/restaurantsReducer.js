@@ -19,7 +19,7 @@ const restaurantsReducer = (state=initialState, action) => {
     switch(action.type) {
 
         /*****************************************************************************************************/
-        /*                                      Update List of Restauarants                                  */
+        /*                                      Update List of Restaurants                                  */
         /*****************************************************************************************************/
         case RESTAURANT_FETCH_START:
             return({...state, fetchingRestaurants: true});

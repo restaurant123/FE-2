@@ -249,6 +249,7 @@ h3 {
 }
 .restaurants .restaurant button {
   float: right;
+  width: 80px;
 }
 .single-restaurant {
   margin-top: 40px;
