@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { incrementVisits, decrementVisits } from '../actions/restaurantsAction';
 import { withRouter, Link } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'reactstrap';
 
