@@ -9,14 +9,14 @@ import {
   Nav,
   NavItem,
   NavLink,
-  // UncontrolledDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem,
-  // InputGroup,
-  // InputGroupAddon,
-  // Input,
-  // InputGroupText,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  InputGroup,
+  InputGroupAddon,
+  Input,
+  InputGroupText,
   Media,} from 'reactstrap';
 
 import {logout} from '../actions/loginAction';
@@ -25,9 +25,10 @@ import {logout} from '../actions/loginAction';
 class NavBar extends React.Component {
 
 
-    // this.toggle = this.toggle.bind(this);
     state = {
       isOpen: false,
+      takeout: false,
+      delivery: false,
     };
   
 
@@ -66,6 +67,13 @@ class NavBar extends React.Component {
     event.preventDefault();
     this.props.logout();
     this.props.history.push('/login')
+  }
+
+  handleFilterClick = (event) => {
+    // event.preventDefault();
+    // console.log('before: ', this.state)
+    this.setState({[event.target.name]: !this.state[event.target.name]});
+    // setTimeout(()=> console.log('after: ', this.state), 1000)
 
   }
 
@@ -88,7 +96,7 @@ class NavBar extends React.Component {
                 <NavLink className='link' tag={Link} to='../restaurants'><span>Restaurants</span></NavLink>
               </NavItem>
 
-              {/* {!this.props.inLoginPage && (
+              {!this.props.inLoginPage && (
                 <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav>
                     <span>Filter</span>
@@ -98,7 +106,12 @@ class NavBar extends React.Component {
                       <InputGroup>
                         <InputGroupAddon addonType="append">
                           <InputGroupText>
-                            <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+                            <Input 
+                              addon type="checkbox" aria-label="Checkbox for following text input"
+                              name = 'delivery'
+                              checked = {this.state.delivery}
+                              onChange = {this.handleFilterClick}
+                            />
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input placeholder="delivery" />
@@ -108,7 +121,13 @@ class NavBar extends React.Component {
                     <InputGroup>
                         <InputGroupAddon addonType="append">
                           <InputGroupText>
-                            <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+                            <Input 
+                              addon type="checkbox" aria-label="Checkbox for following text input"
+                              name = 'takeout'
+                              checked = {this.state.takeout}
+                              onChange={this.handleFilterClick}
+
+                            />
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input placeholder="takeout" />
@@ -120,10 +139,10 @@ class NavBar extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              )} */}
+              )}
 
               
-              {/* {!this.props.inLoginPage && (
+              {/* { !this.props.inLoginPage && (
                 <NavItem>
                 <NavLink className='link' tag={Link} to='../restaurants'><span>MyPassport</span></NavLink>
                 </NavItem>
