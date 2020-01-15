@@ -1,5 +1,6 @@
 import {RESTAURANT_FETCH_START, RESTAURANT_FETCH_SUCCESS, RESTAURANT_FETCH_FAILURE,
-        INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT, UPDATE_RESTAURANT
+        INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT, UPDATE_RESTAURANT,
+        TAKEOUT, DELIVERY,
         } from '../actions/restaurantsAction';
 
 const initialState = {
@@ -8,6 +9,8 @@ const initialState = {
     fetchingError: null,
     localDeleting: false,
     localDeleteError: null,
+    takeout: false,
+    delivery: false,
 
     restaurant: {}
 }
@@ -70,7 +73,6 @@ const restaurantsReducer = (state=initialState, action) => {
         /*****************************************************************************************************/
 
         case UPDATE_RESTAURANT: {
-            console.log('in update_restaurant_reducer: ', action.payload)
             return (
                 {
                     ...state,
@@ -83,7 +85,36 @@ const restaurantsReducer = (state=initialState, action) => {
                 }
             )
         }
-            
+
+        /******************************************************************************************************/
+        /*                                      Update Filter Status for Take out                             */
+        /******************************************************************************************************/
+        case TAKEOUT: {
+            return (
+                {
+                    ...state,
+                    takeout: ! state.takeout
+                }
+                
+            )
+        } 
+
+        /******************************************************************************************************/
+        /*                                      Update Filter Status for Delivery                             */
+        /******************************************************************************************************/
+        case DELIVERY: {
+            return (
+                {
+                    ...state,
+                    delivery: ! state.delivery
+                }
+                
+            )
+        } 
+        
+        
+        
+        
         default:
         return state;
     }
