@@ -90,6 +90,7 @@ const restaurantsReducer = (state=initialState, action) => {
         /*                                      Update Filter Status for Take out                             */
         /******************************************************************************************************/
         case TAKEOUT: {
+
             return (
                 {
                     ...state,
@@ -111,7 +112,6 @@ const restaurantsReducer = (state=initialState, action) => {
                 
             )
         } 
-        
         
         default:
         return state;

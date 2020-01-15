@@ -20,6 +20,7 @@ import {
   Media,} from 'reactstrap';
 
 import {logout} from '../actions/loginAction';
+import {updateTakeoutAction, updateDeliveryAction} from '../actions/restaurantsAction'
 
 
 class NavBar extends React.Component {
@@ -72,8 +73,14 @@ class NavBar extends React.Component {
   handleFilterClick = (event) => {
     // event.preventDefault();
     // console.log('before: ', this.state)
-    this.setState({[event.target.name]: !this.state[event.target.name]});
+    // this.setState({[event.target.name]: !this.state[event.target.name]});
     // setTimeout(()=> console.log('after: ', this.state), 1000)
+    if(event.target.name === 'delivery') {
+      this.props.updateDeliveryAction();
+    }
+    else {
+      this.props.updateTakeoutAction();
+    }
 
   }
 
@@ -109,7 +116,7 @@ class NavBar extends React.Component {
                             <Input 
                               addon type="checkbox" aria-label="Checkbox for following text input"
                               name = 'delivery'
-                              checked = {this.state.delivery}
+                              checked = {this.props.delivery}
                               onChange = {this.handleFilterClick}
                             />
                           </InputGroupText>
@@ -124,7 +131,7 @@ class NavBar extends React.Component {
                             <Input 
                               addon type="checkbox" aria-label="Checkbox for following text input"
                               name = 'takeout'
-                              checked = {this.state.takeout}
+                              checked = {this.props.takeout}
                               onChange={this.handleFilterClick}
 
                             />
@@ -177,6 +184,11 @@ class NavBar extends React.Component {
 const mapPropstoState = (state) => ({
   loggedIn: state.login.loggedIn,
   inLoginPage: state.login.inLoginPage,
+  delivery: state.restaurants.delivery,
+  takeout: state.restaurants.takeout
 })
 
-export default withRouter(connect(mapPropstoState, {logout})(NavBar))
+export default withRouter(connect(
+      mapPropstoState, 
+      {logout, updateDeliveryAction, updateTakeoutAction})(NavBar)
+    )

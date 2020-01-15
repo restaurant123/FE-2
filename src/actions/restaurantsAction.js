@@ -62,7 +62,7 @@ export const updateRestaurantAction = (restaurant) => dispatch => {
 
 export const TAKEOUT = "TAKEOUT";
 
-export const updateTakeout = () => {
+export const updateTakeoutAction = () => dispatch => {
     dispatch({type:TAKEOUT})
 }
 
@@ -72,6 +72,6 @@ export const updateTakeout = () => {
 
 export const DELIVERY = "DELIVERY";
 
-export const updateDelivery = () => {
+export const updateDeliveryAction = () => dispatch => {
     dispatch({type:DELIVERY})
 }
