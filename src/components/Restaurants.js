@@ -38,50 +38,53 @@ class Restaurants extends React.Component {
         return (
             <div className='restaurants' >
                 {this.props.restaurants && this.props.restaurants.map( restaurant => 
-                     <Container key={restaurant.id}>
-                        <Row className='restaurant'>
-                            <Col xs='6' >
-                                <div className="restaurant-img" 
-                                    onClick={()=>this.more(restaurant.id)}>
-                                    <img src={restaurant.image_url} alt="restaurant" />
-                                </div>
-                            </Col>
-                            <Col xs='6'>
-                                <Row>
-                                    <Col className='name' onClick={()=>this.more(restaurant.id)}>
-                                        <h2>{restaurant.name}</h2>
-                                    </Col>
-                                    <Col className='address'>
-                                        <p>{restaurant.address}</p>
-                                        <p>{restaurant.city}</p>
-                                        <p>{restaurant.state}</p>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col >
-                                        <p className='summary'>
-                                            {restaurant.summary}
-                                        </p>    
-                                        <p className='description'>
-                                            {restaurant.description}
-                                        </p>
-                                    </Col>
-                                </Row>
-                                <Row className='last-row'>
-                                    <Col xs='6'>
-                                        <span>{`visited: ${restaurant.visited}`}</span>
+                        <Container key={restaurant.id}>
+                            {   !((this.props.delivery && restaurant.delivery==='no') 
+                                || (this.props.takeout && restaurant.takeout==='no')) &&
+                                <Row className='restaurant'>
+                                    <Col xs='6' >
+                                        <div className="restaurant-img" 
+                                            onClick={()=>this.more(restaurant.id)}>
+                                            <img src={restaurant.image_url} alt="restaurant" />
+                                        </div>
                                     </Col>
                                     <Col xs='6'>
-                                        <Button color='danger' onClick={()=>
-                                            this.more(restaurant.id)}>
-                                            More
-                                        </Button>
+                                        <Row>
+                                            <Col className='name' onClick={()=>this.more(restaurant.id)}>
+                                                <h2>{restaurant.name}</h2>
+                                            </Col>
+                                            <Col className='address'>
+                                                <p>{restaurant.address}</p>
+                                                <p>{restaurant.city}</p>
+                                                <p>{restaurant.state}</p>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col >
+                                                <p className='summary'>
+                                                    {restaurant.summary}
+                                                </p>    
+                                                <p className='description'>
+                                                    {restaurant.description}
+                                                </p>
+                                            </Col>
+                                        </Row>
+                                        <Row className='last-row'>
+                                            <Col xs='6'>
+                                                <span>{`visited: ${restaurant.visited}`}</span>
+                                            </Col>
+                                            <Col xs='6'>
+                                                <Button color='danger' onClick={()=>
+                                                    this.more(restaurant.id)}>
+                                                    More
+                                                </Button>
+                                            </Col>
+                                        </Row>
                                     </Col>
                                 </Row>
-                            </Col>
-                        </Row>
-                        
-                    </Container>
+                            }
+                        </Container>
+                    
                 )}
                 
             </div>
@@ -93,7 +96,9 @@ class Restaurants extends React.Component {
 const mapStateToProps = (state) => ({
         restaurants: state.restaurants.restaurants,
         restaurant: state.restaurants.restaurant,
-        loggedIn: state.login.loggedIn
+        loggedIn: state.login.loggedIn,
+        delivery: state.restaurants.delivery,
+        takeout: state.restaurants.takeout,
     }
 )
 
