@@ -56,4 +56,22 @@ export const updateRestaurantAction = (restaurant) => dispatch => {
     dispatch({type: UPDATE_RESTAURANT, payload: restaurant})
 }
 
+/********************************************************************************/
+/*                      Update Take out Filter status                           */
+/********************************************************************************/
 
+export const TAKEOUT = "TAKEOUT";
+
+export const updateTakeout = () => {
+    dispatch({type:TAKEOUT})
+}
+
+/********************************************************************************/
+/*                      Update Delivery Filter status                           */
+/********************************************************************************/
+
+export const DELIVERY = "DELIVERY";
+
+export const updateDelivery = () => {
+    dispatch({type:DELIVERY})
+}
