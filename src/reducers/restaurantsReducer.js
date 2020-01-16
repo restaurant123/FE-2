@@ -7,8 +7,7 @@ const initialState = {
     restaurants: [],
     fetchingRestaurants: false,
     fetchingError: null,
-    localDeleting: false,
-    localDeleteError: null,
+    restaurantSelected: false,
     takeout: false,
     delivery: false,
 
@@ -41,6 +40,7 @@ const restaurantsReducer = (state=initialState, action) => {
         case SELECT_RESTAURANT: {
             return {
                 ...state,
+                restaurantSelected: true,
                 restaurant: state.restaurants.find(restaurant => restaurant.id === action.payload)
             }
         }

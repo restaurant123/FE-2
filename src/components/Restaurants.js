@@ -14,6 +14,7 @@ class Restaurants extends React.Component {
 
     componentDidMount() {
     // reactGA.pageview('/restaurants');
+    
     }
 
     more = (id) => {

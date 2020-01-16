@@ -40,18 +40,7 @@ class App extends React.Component {
             <Redirect to="/restaurants" />
             )}
          />
-
-        {/* <Route exact path="/" render={() => (
-          this.props.loggedIn? (
-            <Redirect to="/restaurants" />
-          ) : (
-            <Redirect to="/login" />
-            )
-        )} /> */}
-
-
-  
-        
+         
       </div>
     );
   }

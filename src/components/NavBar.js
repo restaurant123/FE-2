@@ -28,8 +28,6 @@ class NavBar extends React.Component {
 
     state = {
       isOpen: false,
-      takeout: false,
-      delivery: false,
     };
   
 
@@ -71,17 +69,13 @@ class NavBar extends React.Component {
   }
 
   handleFilterClick = (event) => {
-    // event.preventDefault();
-    // console.log('before: ', this.state)
-    // this.setState({[event.target.name]: !this.state[event.target.name]});
-    // setTimeout(()=> console.log('after: ', this.state), 1000)
+
     if(event.target.name === 'delivery') {
       this.props.updateDeliveryAction();
     }
     else {
       this.props.updateTakeoutAction();
     }
-
   }
 
 
@@ -103,7 +97,7 @@ class NavBar extends React.Component {
                 <NavLink className='link' tag={Link} to='../restaurants'><span>Restaurants</span></NavLink>
               </NavItem>
 
-              {!this.props.inLoginPage && (
+              {!this.props.inLoginPage && !this.props.restaurantSelected && (
                 <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav>
                     <span>Filter</span>
@@ -148,14 +142,6 @@ class NavBar extends React.Component {
               </UncontrolledDropdown>
               )}
 
-              
-              {/* { !this.props.inLoginPage && (
-                <NavItem>
-                <NavLink className='link' tag={Link} to='../restaurants'><span>MyPassport</span></NavLink>
-                </NavItem>
-              )} */}
-              
-
               {
                 (!this.props.loggedIn && !this.props.inLoginPage && (
                   <NavItem>
@@ -185,7 +171,8 @@ const mapPropstoState = (state) => ({
   loggedIn: state.login.loggedIn,
   inLoginPage: state.login.inLoginPage,
   delivery: state.restaurants.delivery,
-  takeout: state.restaurants.takeout
+  takeout: state.restaurants.takeout,
+  restaurantSelected: state.restaurants.restaurantSelected,
 })
 
 export default withRouter(connect(
