@@ -1,6 +1,6 @@
 import {RESTAURANT_FETCH_START, RESTAURANT_FETCH_SUCCESS, RESTAURANT_FETCH_FAILURE,
         INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT, UPDATE_RESTAURANT,
-        TAKEOUT, DELIVERY,
+        TAKEOUT, DELIVERY, RESTAURANT_IS_NOT_SELECTED,
         } from '../actions/restaurantsAction';
 
 const initialState = {
@@ -111,7 +111,20 @@ const restaurantsReducer = (state=initialState, action) => {
                 }
                 
             )
-        } 
+        }
+
+        /******************************************************************************************************/
+        /*                                      Set Restaurant Selection Status                               */
+        /******************************************************************************************************/
+        case RESTAURANT_IS_NOT_SELECTED: {
+            return (
+                {
+                    ...state,
+                    restaurantSelected: false,
+                }
+            )
+        }
+        
         
         default:
         return state;

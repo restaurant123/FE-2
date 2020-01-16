@@ -75,3 +75,12 @@ export const DELIVERY = "DELIVERY";
 export const updateDeliveryAction = () => dispatch => {
     dispatch({type:DELIVERY})
 }
+
+/********************************************************************************/
+/*                      Update Selected Restaurant status                       */
+/********************************************************************************/
+export const RESTAURANT_IS_NOT_SELECTED = 'RESTAURANT_IS_NOT_SELECTED'
+
+export const unselectRestaurantAction = () => dispatch => {
+    dispatch({type: RESTAURANT_IS_NOT_SELECTED})
+}

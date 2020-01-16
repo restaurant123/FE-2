@@ -1,6 +1,6 @@
 // import reactGA from 'react-ga';
 import React from 'react'
-import {selectRestaurantAction} from '../actions/restaurantsAction';
+import {selectRestaurantAction, unselectRestaurantAction} from '../actions/restaurantsAction';
 
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -14,7 +14,9 @@ class Restaurants extends React.Component {
 
     componentDidMount() {
     // reactGA.pageview('/restaurants');
-    
+        this.props.unselectRestaurantAction();
+
+
     }
 
     more = (id) => {
@@ -57,7 +59,7 @@ class Restaurants extends React.Component {
                                             <Col className='address'>
                                                 <p>{restaurant.address}</p>
                                                 <p>{restaurant.city}</p>
-                                                <p>{restaurant.state}</p>
+                                                <p>{restaurant.zipCode + " " +restaurant.state}</p>
                                             </Col>
                                         </Row>
                                         <Row>
@@ -105,4 +107,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default withRouter(connect(mapStateToProps, {selectRestaurantAction})(Restaurants));
+export default withRouter(connect(mapStateToProps, {selectRestaurantAction, unselectRestaurantAction})(Restaurants));

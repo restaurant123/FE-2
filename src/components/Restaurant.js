@@ -35,7 +35,7 @@ class Restaurant extends React.Component {
                                     <Col className='address'>
                                         <p>{this.props.restaurant.address}</p>
                                         <p>{this.props.restaurant.city}</p>
-                                        <p>{this.props.restaurant.state}</p>
+                                        <p>{this.props.restaurant.zipCode + " " + this.props.restaurant.state}</p>
                                     </Col>
                                 </Row>
                                 <Row>

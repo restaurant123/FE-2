@@ -30,7 +30,6 @@ class App extends React.Component {
           <NavBar />
         </header>
   
-
         <Route exact path='/restaurants' component={Restaurants} />
         <PrivateRoute exact path='/restaurants/restaurant' component={Restaurant} />
         <PrivateRoute exact path='/restaurants/restaurant/updateForm' component={UpdateForm} />
@@ -40,7 +39,7 @@ class App extends React.Component {
             <Redirect to="/restaurants" />
             )}
          />
-         
+
       </div>
     );
   }
