@@ -57,24 +57,32 @@ export const updateRestaurantAction = (restaurant) => dispatch => {
 }
 
 /********************************************************************************/
-/*                      Update Take out Filter status                           */
+/*               Update Take out and Delivery Filtering status                   */
 /********************************************************************************/
 
 export const TAKEOUT = "TAKEOUT";
-
-export const updateTakeoutAction = () => dispatch => {
-    dispatch({type:TAKEOUT})
-}
-
-/********************************************************************************/
-/*                      Update Delivery Filter status                           */
-/********************************************************************************/
-
 export const DELIVERY = "DELIVERY";
+export const RESET = "RESET";
 
-export const updateDeliveryAction = () => dispatch => {
-    dispatch({type:DELIVERY})
+
+
+export const updateFilterAction = (filter) => dispatch => {
+    console.log('filter: ', filter)
+    switch (filter) {
+        case 'takeout':
+            dispatch({type:TAKEOUT});
+            break;
+        case 'delivery':
+            dispatch({type: DELIVERY});
+            break;
+        case 'reset':
+            dispatch({type: RESET});
+            break;
+        default:
+            return;
+    }
 }
+
 
 /********************************************************************************/
 /*                      Update Selected Restaurant status                       */

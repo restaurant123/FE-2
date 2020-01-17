@@ -1,6 +1,6 @@
 import {RESTAURANT_FETCH_START, RESTAURANT_FETCH_SUCCESS, RESTAURANT_FETCH_FAILURE,
         INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT, UPDATE_RESTAURANT,
-        TAKEOUT, DELIVERY, RESTAURANT_IS_NOT_SELECTED,
+        TAKEOUT, DELIVERY, RESET, RESTAURANT_IS_NOT_SELECTED,
         } from '../actions/restaurantsAction';
 
 const initialState = {
@@ -16,8 +16,6 @@ const initialState = {
 
 const restaurantsReducer = (state=initialState, action) => {
 
-
- 
     switch(action.type) {
 
         /*****************************************************************************************************/
@@ -87,7 +85,7 @@ const restaurantsReducer = (state=initialState, action) => {
         }
 
         /******************************************************************************************************/
-        /*                                      Update Filter Status for Take out                             */
+        /*                              Update Filter Status for Take out and Delivery                        */
         /******************************************************************************************************/
         case TAKEOUT: {
 
@@ -100,9 +98,6 @@ const restaurantsReducer = (state=initialState, action) => {
             )
         } 
 
-        /******************************************************************************************************/
-        /*                                      Update Filter Status for Delivery                             */
-        /******************************************************************************************************/
         case DELIVERY: {
             return (
                 {
@@ -112,6 +107,15 @@ const restaurantsReducer = (state=initialState, action) => {
                 
             )
         }
+
+        case RESET:
+            return (
+                {
+                    ...state,
+                    delivery: false,
+                    takeout: false,
+                }
+            )
 
         /******************************************************************************************************/
         /*                                      Set Restaurant Selection Status                               */

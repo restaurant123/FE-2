@@ -20,7 +20,7 @@ import {
   Media,} from 'reactstrap';
 
 import {logout} from '../actions/loginAction';
-import {updateTakeoutAction, updateDeliveryAction} from '../actions/restaurantsAction'
+import {updateFilterAction} from '../actions/restaurantsAction'
 
 
 class NavBar extends React.Component {
@@ -69,13 +69,9 @@ class NavBar extends React.Component {
   }
 
   handleFilterClick = (event) => {
-
-    if(event.target.name === 'delivery') {
-      this.props.updateDeliveryAction();
-    }
-    else {
-      this.props.updateTakeoutAction();
-    }
+    console.log('in Filter:' , event);
+    this.props.updateFilterAction(event.target.name);
+    
   }
 
 
@@ -136,7 +132,7 @@ class NavBar extends React.Component {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    <span className='item'>Reset</span>
+                    <Input className='item' type='button' value='Reset' name='reset' onClick={this.handleFilterClick} />
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -177,5 +173,5 @@ const mapPropstoState = (state) => ({
 
 export default withRouter(connect(
       mapPropstoState, 
-      {logout, updateDeliveryAction, updateTakeoutAction})(NavBar)
+      {logout, updateFilterAction})(NavBar)
     )
