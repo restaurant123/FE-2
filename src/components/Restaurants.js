@@ -1,4 +1,4 @@
-// import reactGA from 'react-ga';
+import reactGA from 'react-ga';
 import React from 'react'
 import {selectRestaurantAction, unselectRestaurantAction} from '../actions/restaurantsAction';
 
@@ -13,7 +13,7 @@ class Restaurants extends React.Component {
 
 
     componentDidMount() {
-    // reactGA.pageview('/restaurants');
+        reactGA.pageview('/restaurants');
         this.props.unselectRestaurantAction();
 
 
@@ -21,10 +21,10 @@ class Restaurants extends React.Component {
 
     more = (id) => {
 
-        // reactGA.event( {
-        //     category: 'Restaurant info',
-        //     action: 'click on a restaurant',
-        // })
+        reactGA.event( {
+            category: 'Restaurant info',
+            action: 'click on a restaurant',
+        })
 
         if(this.props.loggedIn) {
             this.props.selectRestaurantAction(id)

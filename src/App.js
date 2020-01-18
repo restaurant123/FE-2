@@ -1,4 +1,4 @@
-// import reactGA from 'react-ga';
+import reactGA from 'react-ga';
 import React from 'react';
 import {Route} from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute'
@@ -13,9 +13,9 @@ import {connect} from 'react-redux';
 import {getRestaurantsAction} from './actions/restaurantsAction';
 import UpdateForm from './components/UpdateForm';
 
-// reactGA.initialize('UA-144225007-1', {
-//   debug: true,
-// });
+reactGA.initialize('UA-144225007-1', {
+  debug: true,
+});
 
 class App extends React.Component {
 

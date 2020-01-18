@@ -25,35 +25,9 @@ import {updateFilterAction} from '../actions/restaurantsAction'
 
 class NavBar extends React.Component {
 
-
-    state = {
-      isOpen: false,
-    };
-  
-
-  // componentDidMount() {
-  //   this.navItemsVisibility();
-  // }
-
-  // componentDidUpdate() {
-  //   this.navItemsVisibility();
-  // }
-
-  // navItemsVisibility = () => {
-  //   if (this.props.loggedIn) {
-  //     // document.querySelector(".login").classList.add("hidden");
-  //     // document.querySelector(".logout").classList.remove("hidden");
-  //     //document.querySelector(".filter").classList.remove("hidden");
-  //     // document.querySelector(".dropdown-toggle").classList.remove("hidden");
-
-  //   }
-  //   else {
-  //     // document.querySelector(".login").classList.remove("hidden");
-  //     // document.querySelector(".logout").classList.add("hidden");
-  //     //document.querySelector(".filter").classList.add("hidden");
-  //     // document.querySelector(".dropdown-toggle").classList.add("hidden");
-  //   }
-  // }
+  state = {
+    isOpen: false,
+  };
 
 
   toggle = () => {
@@ -73,7 +47,6 @@ class NavBar extends React.Component {
     this.props.updateFilterAction(event.target.name);
     
   }
-
 
   render() {
     return (
