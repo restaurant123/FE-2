@@ -1,4 +1,4 @@
-// import reactGA from 'react-ga';
+import reactGA from 'react-ga';
 import React from 'react';
 import {Route} from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute'
@@ -13,9 +13,9 @@ import {connect} from 'react-redux';
 import {getRestaurantsAction} from './actions/restaurantsAction';
 import UpdateForm from './components/UpdateForm';
 
-// reactGA.initialize('UA-144225007-1', {
-//   debug: true,
-// });
+reactGA.initialize('UA-144225007-1', {
+  debug: true,
+});
 
 class App extends React.Component {
 
@@ -30,7 +30,6 @@ class App extends React.Component {
           <NavBar />
         </header>
   
-
         <Route exact path='/restaurants' component={Restaurants} />
         <PrivateRoute exact path='/restaurants/restaurant' component={Restaurant} />
         <PrivateRoute exact path='/restaurants/restaurant/updateForm' component={UpdateForm} />
@@ -41,17 +40,6 @@ class App extends React.Component {
             )}
          />
 
-        {/* <Route exact path="/" render={() => (
-          this.props.loggedIn? (
-            <Redirect to="/restaurants" />
-          ) : (
-            <Redirect to="/login" />
-            )
-        )} /> */}
-
-
-  
-        
       </div>
     );
   }

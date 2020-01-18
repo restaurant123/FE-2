@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { incrementVisits, decrementVisits } from '../actions/restaurantsAction';
 import { withRouter, Link } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'reactstrap';
 
@@ -36,7 +35,7 @@ class Restaurant extends React.Component {
                                     <Col className='address'>
                                         <p>{this.props.restaurant.address}</p>
                                         <p>{this.props.restaurant.city}</p>
-                                        <p>{this.props.restaurant.state}</p>
+                                        <p>{this.props.restaurant.zipCode + " " + this.props.restaurant.state}</p>
                                     </Col>
                                 </Row>
                                 <Row>

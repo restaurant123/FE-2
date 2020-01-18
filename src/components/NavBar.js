@@ -9,51 +9,25 @@ import {
   Nav,
   NavItem,
   NavLink,
-  // UncontrolledDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem,
-  // InputGroup,
-  // InputGroupAddon,
-  // Input,
-  // InputGroupText,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  InputGroup,
+  InputGroupAddon,
+  Input,
+  InputGroupText,
   Media,} from 'reactstrap';
 
 import {logout} from '../actions/loginAction';
+import {updateFilterAction} from '../actions/restaurantsAction'
 
 
 class NavBar extends React.Component {
 
-
-    // this.toggle = this.toggle.bind(this);
-    state = {
-      isOpen: false,
-    };
-  
-
-  // componentDidMount() {
-  //   this.navItemsVisibility();
-  // }
-
-  // componentDidUpdate() {
-  //   this.navItemsVisibility();
-  // }
-
-  // navItemsVisibility = () => {
-  //   if (this.props.loggedIn) {
-  //     // document.querySelector(".login").classList.add("hidden");
-  //     // document.querySelector(".logout").classList.remove("hidden");
-  //     //document.querySelector(".filter").classList.remove("hidden");
-  //     // document.querySelector(".dropdown-toggle").classList.remove("hidden");
-
-  //   }
-  //   else {
-  //     // document.querySelector(".login").classList.remove("hidden");
-  //     // document.querySelector(".logout").classList.add("hidden");
-  //     //document.querySelector(".filter").classList.add("hidden");
-  //     // document.querySelector(".dropdown-toggle").classList.add("hidden");
-  //   }
-  // }
+  state = {
+    isOpen: false,
+  };
 
 
   toggle = () => {
@@ -66,9 +40,13 @@ class NavBar extends React.Component {
     event.preventDefault();
     this.props.logout();
     this.props.history.push('/login')
-
   }
 
+  handleFilterClick = (event) => {
+    console.log('in Filter:' , event);
+    this.props.updateFilterAction(event.target.name);
+    
+  }
 
   render() {
     return (
@@ -88,7 +66,7 @@ class NavBar extends React.Component {
                 <NavLink className='link' tag={Link} to='../restaurants'><span>Restaurants</span></NavLink>
               </NavItem>
 
-              {/* {!this.props.inLoginPage && (
+              {!this.props.inLoginPage && !this.props.restaurantSelected && (
                 <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav>
                     <span>Filter</span>
@@ -98,7 +76,12 @@ class NavBar extends React.Component {
                       <InputGroup>
                         <InputGroupAddon addonType="append">
                           <InputGroupText>
-                            <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+                            <Input 
+                              addon type="checkbox" aria-label="Checkbox for following text input"
+                              name = 'delivery'
+                              checked = {this.props.delivery}
+                              onChange = {this.handleFilterClick}
+                            />
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input placeholder="delivery" />
@@ -108,7 +91,13 @@ class NavBar extends React.Component {
                     <InputGroup>
                         <InputGroupAddon addonType="append">
                           <InputGroupText>
-                            <Input addon type="checkbox" aria-label="Checkbox for following text input" />
+                            <Input 
+                              addon type="checkbox" aria-label="Checkbox for following text input"
+                              name = 'takeout'
+                              checked = {this.props.takeout}
+                              onChange={this.handleFilterClick}
+
+                            />
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input placeholder="takeout" />
@@ -116,19 +105,11 @@ class NavBar extends React.Component {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    <span className='item'>Reset</span>
+                    <Input className='item' type='button' value='Reset' name='reset' onClick={this.handleFilterClick} />
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              )} */}
-
-              
-              {/* {!this.props.inLoginPage && (
-                <NavItem>
-                <NavLink className='link' tag={Link} to='../restaurants'><span>MyPassport</span></NavLink>
-                </NavItem>
-              )} */}
-              
+              )}
 
               {
                 (!this.props.loggedIn && !this.props.inLoginPage && (
@@ -158,6 +139,12 @@ class NavBar extends React.Component {
 const mapPropstoState = (state) => ({
   loggedIn: state.login.loggedIn,
   inLoginPage: state.login.inLoginPage,
+  delivery: state.restaurants.delivery,
+  takeout: state.restaurants.takeout,
+  restaurantSelected: state.restaurants.restaurantSelected,
 })
 
-export default withRouter(connect(mapPropstoState, {logout})(NavBar))
+export default withRouter(connect(
+      mapPropstoState, 
+      {logout, updateFilterAction})(NavBar)
+    )

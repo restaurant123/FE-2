@@ -56,4 +56,39 @@ export const updateRestaurantAction = (restaurant) => dispatch => {
     dispatch({type: UPDATE_RESTAURANT, payload: restaurant})
 }
 
+/********************************************************************************/
+/*               Update Take out and Delivery Filtering status                   */
+/********************************************************************************/
 
+export const TAKEOUT = "TAKEOUT";
+export const DELIVERY = "DELIVERY";
+export const RESET = "RESET";
+
+
+
+export const updateFilterAction = (filter) => dispatch => {
+    console.log('filter: ', filter)
+    switch (filter) {
+        case 'takeout':
+            dispatch({type:TAKEOUT});
+            break;
+        case 'delivery':
+            dispatch({type: DELIVERY});
+            break;
+        case 'reset':
+            dispatch({type: RESET});
+            break;
+        default:
+            return;
+    }
+}
+
+
+/********************************************************************************/
+/*                      Update Selected Restaurant status                       */
+/********************************************************************************/
+export const RESTAURANT_IS_NOT_SELECTED = 'RESTAURANT_IS_NOT_SELECTED'
+
+export const unselectRestaurantAction = () => dispatch => {
+    dispatch({type: RESTAURANT_IS_NOT_SELECTED})
+}

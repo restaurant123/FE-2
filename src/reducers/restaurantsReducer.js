@@ -1,21 +1,21 @@
 import {RESTAURANT_FETCH_START, RESTAURANT_FETCH_SUCCESS, RESTAURANT_FETCH_FAILURE,
-        INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT, UPDATE_RESTAURANT
+        INCREMENT_VISITS, DECREMENT_VISITS, SELECT_RESTAURANT, UPDATE_RESTAURANT,
+        TAKEOUT, DELIVERY, RESET, RESTAURANT_IS_NOT_SELECTED,
         } from '../actions/restaurantsAction';
 
 const initialState = {
     restaurants: [],
     fetchingRestaurants: false,
     fetchingError: null,
-    localDeleting: false,
-    localDeleteError: null,
+    restaurantSelected: false,
+    takeout: false,
+    delivery: false,
 
     restaurant: {}
 }
 
 const restaurantsReducer = (state=initialState, action) => {
 
-
- 
     switch(action.type) {
 
         /*****************************************************************************************************/
@@ -38,6 +38,7 @@ const restaurantsReducer = (state=initialState, action) => {
         case SELECT_RESTAURANT: {
             return {
                 ...state,
+                restaurantSelected: true,
                 restaurant: state.restaurants.find(restaurant => restaurant.id === action.payload)
             }
         }
@@ -70,7 +71,6 @@ const restaurantsReducer = (state=initialState, action) => {
         /*****************************************************************************************************/
 
         case UPDATE_RESTAURANT: {
-            console.log('in update_restaurant_reducer: ', action.payload)
             return (
                 {
                     ...state,
@@ -83,7 +83,53 @@ const restaurantsReducer = (state=initialState, action) => {
                 }
             )
         }
-            
+
+        /******************************************************************************************************/
+        /*                              Update Filter Status for Take out and Delivery                        */
+        /******************************************************************************************************/
+        case TAKEOUT: {
+
+            return (
+                {
+                    ...state,
+                    takeout: ! state.takeout
+                }
+                
+            )
+        } 
+
+        case DELIVERY: {
+            return (
+                {
+                    ...state,
+                    delivery: ! state.delivery
+                }
+                
+            )
+        }
+
+        case RESET:
+            return (
+                {
+                    ...state,
+                    delivery: false,
+                    takeout: false,
+                }
+            )
+
+        /******************************************************************************************************/
+        /*                                      Set Restaurant Selection Status                               */
+        /******************************************************************************************************/
+        case RESTAURANT_IS_NOT_SELECTED: {
+            return (
+                {
+                    ...state,
+                    restaurantSelected: false,
+                }
+            )
+        }
+        
+        
         default:
         return state;
     }
