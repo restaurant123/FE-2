@@ -52,7 +52,6 @@ const restaurantsReducer = (state=initialState, action) => {
                 restaurants: state.restaurants.map(
                     restaurant => restaurant.id === action.payload?
                     {...restaurant, visited: restaurant.visited + 1}:restaurant),
-                restaurant: {...state.restaurant, visited: state.restaurant.visited + 1}
             }
         }
 
@@ -62,7 +61,6 @@ const restaurantsReducer = (state=initialState, action) => {
                 restaurants: state.restaurants.map(
                     restaurant => restaurant.id === action.payload?
                         {...restaurant, visited: restaurant.visited - 1} : restaurant),
-                restaurant: {...state.restaurant, visited: state.restaurant.visited - 1}
             }
         }
 
