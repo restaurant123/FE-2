@@ -63,7 +63,7 @@ class NavBar extends React.Component {
             <Nav className="ml-auto" navbar>
 
               <NavItem>
-                <NavLink className='link' tag={Link} to='../restaurants'><span>Restaurants</span></NavLink>
+                <NavLink className='link' tag={Link} to='/restaurants'><span>Restaurants</span></NavLink>
               </NavItem>
 
               {!this.props.inLoginPage && !this.props.restaurantSelected && (
