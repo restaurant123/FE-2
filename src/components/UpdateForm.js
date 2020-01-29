@@ -20,10 +20,15 @@ class UpdateForm extends React.Component {
         delivery: this.props.restaurant.delivery,
         openHour: this.props.restaurant.openHour,
         closeHour: this.props.restaurant.closeHour,
-        openDay: this.props.restaurant.openDay,
+        openDay: this.props.restaurant.openDay, 
         closeDay: this.props.restaurant.closeDay,
         visited: this.props.restaurant.visited,
+
     };
+
+    componentDidMount() {
+        this.setState({zipCode: this.props.zipCode})
+    }
 
     handleInputChange = (event) => {
         this.setState({[event.target.name]: event.target.value})
@@ -140,7 +145,8 @@ class UpdateForm extends React.Component {
                         <Col md={2}>
                             <FormGroup>
                                 <Label for='zipCode'>Zipcode</Label>
-                                <Input type='number' name='zipCode' id='zipCode' value={this.state.zipCode} onChange={this.handleInputChange} />
+                                <Input invalid={this.state.zipCode && (this.state.zipCode).length !== 5} type='number' name='zipCode' id='zipCode' value={this.state.zipCode} onChange={this.handleInputChange} />
+                                <FormFeedback invalid>Zip code must be 5 digit code</FormFeedback>
                             </FormGroup>
                         </Col>
                     </Row>
