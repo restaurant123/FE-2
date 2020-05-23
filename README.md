@@ -1,6 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is the implementation of a front end App hosted on NetliFy at the following url: https://serene-jackson-e2509e.netlify.app/login
+This is the implementation of a front end App hosted on NetliFy at the following url:
+
+https://serene-jackson-e2509e.netlify.app/login
+
 
 This app draws data from a back end hosted on Heroku to populate a personel restaurant list.
 
